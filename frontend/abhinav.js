@@ -169,14 +169,13 @@ function initSectionTransitions(reducedMotion) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("section-in-view");
-                } else {
-                    entry.target.classList.remove("section-in-view");
+                    observer.unobserve(entry.target);
                 }
             });
         },
         {
-            threshold: 0.28,
-            rootMargin: "-8% 0px -18% 0px"
+            threshold: 0.16,
+            rootMargin: "0px 0px -12% 0px"
         }
     );
 
