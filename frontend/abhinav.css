@@ -1752,6 +1752,13 @@ body.dark-mode .typing-target {
     transform: translateY(0);
 }
 
+.glass-card.reveal.active:hover,
+.glass-card.reveal.active:focus-within,
+.accordion.reveal.active:hover,
+.accordion.reveal.active:focus-within {
+    transform: translateY(var(--hover-lift));
+}
+
 .section-heading,
 .hero-copy,
 .hero-panel,
