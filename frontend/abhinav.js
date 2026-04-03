@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initContactForm();
 });
 
+const CONTACT_API_URL = "https://portfolio-backend-tan6.onrender.com/api/feedback";
+
 function initThemeToggle() {
     const toggle = document.getElementById("theme-toggle");
     if (!toggle) {
@@ -246,7 +248,7 @@ function initContactForm() {
         }
 
         try {
-            const response = await fetch("https://portfolio-backend-tan6.onrender.com/api/feedback", {
+            const response = await fetch(CONTACT_API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -254,13 +256,20 @@ function initContactForm() {
                 body: JSON.stringify(payload)
             });
 
-            const result = await response.json();
+            const responseType = response.headers.get("content-type") || "";
+            const result = responseType.includes("application/json")
+                ? await response.json()
+                : {};
 
             if (!response.ok) {
                 throw new Error(result.message || "Something went wrong.");
             }
 
-            showFormAlert("success", "Message sent", `Thank you, ${payload.name}! Your feedback has been saved.`);
+            showFormAlert(
+                "success",
+                "Message sent",
+                result.message || `Thank you, ${payload.name}! Your message has been received.`
+            );
             form.reset();
         } catch (error) {
             showFormAlert("danger", "Unable to send", error.message || "Unable to send feedback right now.");
