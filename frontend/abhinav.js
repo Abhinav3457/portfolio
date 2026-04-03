@@ -261,7 +261,7 @@ function initContactForm() {
                 ? await response.json()
                 : {};
 
-            if (!response.ok) {
+            if (!response.ok || !result.saved) {
                 throw new Error(result.message || "Something went wrong.");
             }
 

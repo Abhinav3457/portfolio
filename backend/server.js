@@ -68,13 +68,17 @@ app.post('/api/feedback', async (req, res) => {
       });
     } catch (error) {
       console.error('Error saving feedback to MongoDB:', error);
+      return res.status(500).json({
+        message: 'Your message could not be saved. Please try again in a moment.',
+        saved: false
+      });
     }
   }
 
-  console.log('Feedback received without database persistence:', feedbackPayload);
+  console.error('Feedback rejected because database is not connected:', feedbackPayload);
 
-  return res.status(202).json({
-    message: `Thank you, ${name}! Your message has been received.`,
+  return res.status(503).json({
+    message: 'Message service is unavailable right now. Please try again later.',
     saved: false
   });
 });
