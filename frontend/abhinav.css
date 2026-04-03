@@ -575,9 +575,21 @@ img {
     color: var(--blue-deep);
 }
 
+.brand-block {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    transition: transform var(--hover-duration) var(--hover-easing);
+}
+
 .brand-block h1 {
     margin: 0.25rem 0 0;
     font-size: clamp(1.4rem, 2vw, 1.8rem);
+}
+
+.brand-block:hover,
+.brand-block:focus-within {
+    transform: translateY(var(--hover-lift));
 }
 
 .nav-toggle {
@@ -594,7 +606,11 @@ img {
     background: rgba(255, 255, 255, 0.7);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
     cursor: pointer;
-    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition:
+        transform var(--hover-duration) var(--hover-easing),
+        background-color var(--hover-duration) var(--hover-easing),
+        border-color var(--hover-duration) var(--hover-easing),
+        box-shadow var(--hover-duration) var(--hover-easing);
 }
 
 .nav-toggle span {
@@ -608,8 +624,8 @@ img {
 
 .nav-toggle:hover,
 .nav-toggle:focus-visible {
-    transform: translateY(-1px);
-    border-color: rgba(45, 140, 255, 0.28);
+    transform: translateY(var(--hover-lift));
+    border-color: var(--surface-hover-border);
     outline: none;
 }
 
@@ -645,15 +661,20 @@ img {
     font-size: 0.91rem;
     text-decoration: none;
     color: var(--text-muted);
-    transition: transform 0.55s ease, background-color 0.45s ease, color 0.25s ease, box-shadow 0.7s ease, border-color 0.45s ease;
+    transition:
+        transform var(--hover-duration) var(--hover-easing),
+        background-color var(--hover-duration) var(--hover-easing),
+        color var(--hover-duration) var(--hover-easing),
+        box-shadow var(--hover-duration) var(--hover-easing),
+        border-color var(--hover-duration) var(--hover-easing);
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
     color: var(--blue-deep);
     background: rgba(45, 140, 255, 0.1);
-    box-shadow: var(--surface-hover-inset), var(--surface-hover-soft), var(--surface-hover-glow);
-    transform: translateY(-4px);
+    box-shadow: var(--surface-hover-stack);
+    transform: translateY(var(--hover-lift));
     outline: none;
 }
 
@@ -661,7 +682,7 @@ body.dark-mode .site-nav a:hover,
 body.dark-mode .site-nav a:focus-visible {
     color: #ffffff;
     background: rgba(126, 191, 255, 0.14);
-    box-shadow: var(--surface-hover-inset), var(--surface-hover-soft), var(--surface-hover-glow);
+    box-shadow: var(--surface-hover-stack);
 }
 
 body.dark-mode .nav-toggle {
@@ -1258,6 +1279,14 @@ body.dark-mode .alt-section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
+}
+
+.project-card {
+    transition:
+        transform var(--hover-duration) var(--hover-easing),
+        border-color var(--hover-duration) var(--hover-easing),
+        background var(--hover-duration) var(--hover-easing),
+        box-shadow var(--hover-duration) var(--hover-easing);
 }
 
 .two-column {
