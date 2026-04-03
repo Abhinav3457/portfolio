@@ -478,7 +478,7 @@ img {
     gap: 0.9rem;
     width: min(calc(100% - 6rem), var(--container-wide));
     margin: 1rem auto 0;
-    padding: 0.72rem 0.95rem;
+    padding: 0.72rem 6.25rem 0.72rem 0.95rem;
     min-height: var(--header-height);
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -489,17 +489,19 @@ img {
 }
 
 .theme-toggle-button {
-    position: fixed;
-    top: 0.65rem;
-    right: 0.65rem;
-    z-index: 40;
+    position: absolute;
+    top: 50%;
+    right: 0.85rem;
+    z-index: 3;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 78px;
     height: 52px;
+    margin: 0;
     cursor: pointer;
     user-select: none;
+    transform: translateY(-50%);
 }
 
 .theme-toggle-button svg {
@@ -649,6 +651,11 @@ img {
     padding: 0;
     list-style: none;
     justify-content: flex-end;
+}
+
+.site-nav {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .site-nav a {
@@ -2208,11 +2215,18 @@ body.dark-mode .typing-target {
         border-radius: 28px;
         align-items: flex-start;
         flex-direction: column;
-        padding: 0.9rem 1rem;
+        padding: 0.9rem 6.1rem 0.9rem 1rem;
     }
 
     .site-nav {
         width: 100%;
+    }
+
+    .theme-toggle-button {
+        top: 1rem;
+        right: 1rem;
+        transform: none;
+        transform-origin: top right;
     }
 
     .site-nav ul {
@@ -2280,7 +2294,7 @@ body.dark-mode .typing-target {
     .site-header {
         width: min(calc(100% - 5.6rem), var(--container));
         margin-top: 0.5rem;
-        padding: 0.85rem;
+        padding: 0.85rem 8.9rem 0.85rem 0.85rem;
         gap: 0.8rem;
         border-radius: 24px;
         align-items: stretch;
@@ -2291,7 +2305,7 @@ body.dark-mode .typing-target {
     }
 
     .brand-block {
-        max-width: calc(100% - 5rem);
+        max-width: calc(100% - 8.8rem);
     }
 
     .brand-block h1 {
@@ -2385,8 +2399,8 @@ body.dark-mode .typing-target {
     }
 
     .theme-toggle-button {
-        top: 0.42rem;
-        right: 0.42rem;
+        top: 0.78rem;
+        right: 4.6rem;
         transform: scale(0.92);
         transform-origin: top right;
     }
@@ -2431,12 +2445,12 @@ body.dark-mode .typing-target {
 @media (max-width: 560px) {
     .site-header {
         width: min(calc(100% - 5.1rem), var(--container));
-        padding: 0.72rem;
+        padding: 0.72rem 8rem 0.72rem 0.72rem;
         min-height: auto;
     }
 
     .brand-block {
-        max-width: calc(100% - 4.5rem);
+        max-width: calc(100% - 8rem);
     }
 
     .hero-section,
@@ -2513,8 +2527,8 @@ body.dark-mode .typing-target {
     .theme-toggle-button {
         width: 70px;
         height: 47px;
-        top: 0.32rem;
-        right: 0.32rem;
+        top: 0.66rem;
+        right: 4.2rem;
     }
 
     .nav-toggle {
