@@ -846,8 +846,14 @@ body.dark-mode .hero-grid::after {
 
 .hero-panel {
     position: absolute;
-    inset: 0;
-    padding: 0;
+    top: clamp(0.75rem, 2vw, 1.5rem);
+    right: clamp(0.35rem, 1.8vw, 1.35rem);
+    bottom: clamp(0.75rem, 2vw, 1.5rem);
+    width: clamp(320px, 34vw, 470px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(0.3rem, 1vw, 0.8rem) 0;
     border: 0;
     border-radius: 0;
     background: none;
@@ -1124,11 +1130,6 @@ body.dark-mode .secondary-button {
     outline: none;
 }
 
-.hero-panel {
-    display: block;
-    align-self: stretch;
-}
-
 body.dark-mode .stat-card {
     background: rgba(11, 25, 46, 0.82);
     border-color: rgba(126, 191, 255, 0.16);
@@ -1145,8 +1146,8 @@ body.dark-mode .stat-card {
 }
 
 .hero-panel .stat-card {
-    position: absolute;
-    width: clamp(250px, 22vw, 340px);
+    position: relative;
+    width: clamp(250px, 100%, 340px);
     max-width: 34ch;
     pointer-events: auto;
     box-shadow:
@@ -1161,23 +1162,28 @@ body.dark-mode .hero-panel .stat-card {
 }
 
 .hero-panel .stat-card:nth-child(1) {
-    top: clamp(1rem, 4vw, 3rem);
-    right: clamp(0.2rem, 2vw, 1.5rem);
+    margin-left: auto;
     animation: float-surface 14s ease-in-out infinite;
 }
 
 .hero-panel .stat-card:nth-child(2) {
-    top: clamp(16rem, 40%, 23rem);
-    right: clamp(4rem, 10vw, 8rem);
+    margin-right: auto;
+    margin-left: clamp(0rem, 2vw, 0.6rem);
     animation: float-surface 16s ease-in-out infinite;
     animation-delay: -4s;
 }
 
 .hero-panel .stat-card:nth-child(3) {
-    top: clamp(31rem, 74%, 39rem);
-    right: clamp(0.5rem, 3vw, 2rem);
+    margin-left: auto;
     animation: float-surface 15s ease-in-out infinite;
     animation-delay: -8s;
+}
+
+.hero-panel .stat-card:nth-child(4) {
+    margin-right: auto;
+    margin-left: clamp(1.4rem, 5vw, 3.6rem);
+    animation: float-surface 17s ease-in-out infinite;
+    animation-delay: -11s;
 }
 
 .stat-card:hover,
@@ -2135,7 +2141,10 @@ body.dark-mode .typing-target {
         display: grid;
         gap: 1rem;
         position: relative;
-        inset: auto;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        width: auto;
         padding: clamp(1.5rem, 3vw, 2.4rem);
         border: 1px solid var(--line);
         border-radius: var(--radius-xl);
@@ -2144,6 +2153,7 @@ body.dark-mode .typing-target {
         backdrop-filter: blur(8px);
         pointer-events: auto;
         overflow: hidden;
+        justify-content: start;
     }
 
     body.dark-mode .hero-panel {
@@ -2154,6 +2164,9 @@ body.dark-mode .typing-target {
     .hero-panel .stat-card {
         position: static;
         width: auto;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
         animation: none;
         translate: 0 0;
     }
