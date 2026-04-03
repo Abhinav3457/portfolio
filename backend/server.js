@@ -5,7 +5,9 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
+const MONGODB_URI =
+  process.env.MONGODB_URI ||
+  'mongodb+srv://bhumik:8178307875@khaana-khazana.iopbml0.mongodb.net/portfolio?retryWrites=true&w=majority&appName=khaana-khazana';
 const frontendPath = path.join(__dirname, '../frontend');
 
 // Middleware
@@ -15,7 +17,8 @@ app.use(express.static(frontendPath));
 
 mongoose
   .connect(MONGODB_URI, {
-    serverSelectionTimeoutMS: 5000
+    dbName: 'portfolio',
+    serverSelectionTimeoutMS: 10000
   })
   .then(() => {
     console.log('Connected to MongoDB');
