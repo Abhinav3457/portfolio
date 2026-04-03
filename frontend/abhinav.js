@@ -246,7 +246,7 @@ function initContactForm() {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/api/feedback", {
+            const response = await fetch("https://portfolio-backend-tan6.onrender.com/api/feedback", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
