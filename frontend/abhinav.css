@@ -15,7 +15,10 @@
     --surface-hover-glow: 0 0 42px rgba(103, 191, 255, 0.16);
     --surface-hover-inset: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     --surface-hover-border: rgba(44, 120, 214, 0.42);
-    --hover-lift: -8px;
+    --surface-hover-stack: var(--surface-hover-inset), var(--surface-hover-soft), var(--surface-hover-glow);
+    --hover-duration: 0.55s;
+    --hover-easing: cubic-bezier(0.22, 1, 0.36, 1);
+    --hover-lift: -6px;
     --radius-xl: 28px;
     --radius-lg: 22px;
     --radius-md: 16px;
@@ -1454,6 +1457,54 @@ body.dark-mode .tech-logo-chip span {
     transform: translateY(-6px);
     border-color: var(--surface-hover-border);
     box-shadow: var(--surface-hover-inset), var(--surface-hover-soft), var(--surface-hover-glow);
+}
+
+.nav-toggle,
+.site-nav a,
+.info-pill,
+.primary-button,
+.secondary-button,
+.stat-card,
+.glass-card,
+.tech-logo-chip,
+.tech-cluster-card,
+.accordion {
+    transition:
+        transform var(--hover-duration) var(--hover-easing),
+        border-color var(--hover-duration) var(--hover-easing),
+        background var(--hover-duration) var(--hover-easing),
+        background-color var(--hover-duration) var(--hover-easing),
+        color var(--hover-duration) var(--hover-easing),
+        box-shadow var(--hover-duration) var(--hover-easing);
+}
+
+.accordion-header {
+    transition:
+        background-color var(--hover-duration) var(--hover-easing),
+        color var(--hover-duration) var(--hover-easing);
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible,
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.info-pill:hover,
+.info-pill:focus-visible,
+.primary-button:hover,
+.secondary-button:hover,
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+.stat-card:hover,
+.stat-card:focus-within,
+.glass-card:hover,
+.tech-logo-chip:hover,
+.tech-cluster-card:hover,
+.accordion:hover,
+.accordion:focus-within {
+    transform: translateY(var(--hover-lift));
+    border-color: var(--surface-hover-border);
+    box-shadow: var(--surface-hover-stack);
+    outline: none;
 }
 
 .accordion-header {
