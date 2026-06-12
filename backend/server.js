@@ -1,13 +1,11 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
+const { Pool } = require('pg');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI =
-  process.env.MONGODB_URI ||
-  'mongodb+srv://bhumik:8178307875@khaana-khazana.iopbml0.mongodb.net/portfolio?retryWrites=true&w=majority&appName=khaana-khazana';
+const DATABASE_URL = process.env.DATABASE_URL;
 const frontendPath = path.join(__dirname, '../frontend');
 
 // Middleware
@@ -15,27 +13,24 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(frontendPath));
 
-mongoose
-  .connect(MONGODB_URI, {
-    dbName: 'portfolio',
-    serverSelectionTimeoutMS: 10000
-  })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.log('MongoDB connection error:', err.message);
-  });
-
-// Feedback schema
-const feedbackSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  message: String,
-  date: { type: Date, default: Date.now }
+const pool = new Pool({
+  connectionString: DATABASE_URL,
+  ssl: DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
-const Feedback = mongoose.model('Feedback', feedbackSchema);
+const ensureFeedbackTable = async () => {
+  const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS contact_messages (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      message TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+  `;
+
+  await pool.query(createTableQuery);
+};
 
 // Routes
 app.get('/', (req, res) => {
@@ -43,10 +38,41 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
+  const isConnected = Boolean(DATABASE_URL);
+
   res.status(200).json({
     status: 'ok',
-    databaseConnected: mongoose.connection.readyState === 1
+    databaseConfigured: isConnected
   });
+});
+
+app.get('/api/feedback', async (req, res) => {
+  if (!DATABASE_URL) {
+    return res.status(503).json({
+      message: 'Message service is unavailable right now. Please try again later.'
+    });
+  }
+
+  const rawLimit = Number.parseInt(req.query.limit, 10);
+  const limit = Number.isFinite(rawLimit) && rawLimit > 0 ? Math.min(rawLimit, 100) : 50;
+
+  try {
+    await ensureFeedbackTable();
+    const { rows } = await pool.query(
+      'SELECT id, name, email, message, created_at FROM contact_messages ORDER BY created_at DESC LIMIT $1',
+      [limit]
+    );
+
+    return res.status(200).json({
+      count: rows.length,
+      items: rows
+    });
+  } catch (error) {
+    console.error('Error fetching feedback from PostgreSQL:', error);
+    return res.status(500).json({
+      message: 'Messages could not be retrieved. Please try again in a moment.'
+    });
+  }
 });
 
 app.post('/api/feedback', async (req, res) => {
@@ -58,32 +84,35 @@ app.post('/api/feedback', async (req, res) => {
 
   const feedbackPayload = { name, email, message };
 
-  if (mongoose.connection.readyState === 1) {
-    try {
-      const feedback = new Feedback(feedbackPayload);
-      await feedback.save();
+  if (!DATABASE_URL) {
+    console.error('Feedback rejected because DATABASE_URL is not set:', feedbackPayload);
 
-      console.log('New feedback received:', feedbackPayload);
-
-      return res.status(200).json({
-        message: `Thank you, ${name}! Your message has been sent successfully.`,
-        saved: true
-      });
-    } catch (error) {
-      console.error('Error saving feedback to MongoDB:', error);
-      return res.status(500).json({
-        message: 'Your message could not be saved. Please try again in a moment.',
-        saved: false
-      });
-    }
+    return res.status(503).json({
+      message: 'Message service is unavailable right now. Please try again later.',
+      saved: false
+    });
   }
 
-  console.error('Feedback rejected because database is not connected:', feedbackPayload);
+  try {
+    await ensureFeedbackTable();
+    await pool.query(
+      'INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)',
+      [name, email, message]
+    );
 
-  return res.status(503).json({
-    message: 'Message service is unavailable right now. Please try again later.',
-    saved: false
-  });
+    console.log('New feedback received:', feedbackPayload);
+
+    return res.status(200).json({
+      message: `Thank you, ${name}! Your message has been sent successfully.`,
+      saved: true
+    });
+  } catch (error) {
+    console.error('Error saving feedback to PostgreSQL:', error);
+    return res.status(500).json({
+      message: 'Your message could not be saved. Please try again in a moment.',
+      saved: false
+    });
+  }
 });
 
 // Start server

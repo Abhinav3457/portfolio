@@ -1288,6 +1288,10 @@ body.dark-mode .alt-section {
     gap: 1.5rem;
 }
 
+.card-grid.three-column {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .project-card {
     transition:
         transform var(--hover-duration) var(--hover-easing),
@@ -1323,6 +1327,41 @@ body.dark-mode .alt-section {
     margin-top: 0;
     color: var(--blue-deep);
     font-weight: 500;
+}
+
+.experience-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.experience-header h3 {
+    margin: 0;
+}
+
+.experience-header .card-subtitle {
+    margin-top: 0.25rem;
+}
+
+.experience-date {
+    display: inline-flex;
+    flex-shrink: 0;
+    padding: 0.44rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(45, 140, 255, 0.1);
+    border: 1px solid rgba(45, 140, 255, 0.14);
+    color: var(--blue-deep);
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+body.dark-mode .experience-date {
+    background: rgba(126, 191, 255, 0.14);
+    border-color: rgba(126, 191, 255, 0.22);
+    color: #dff4ff;
 }
 
 .detail-list {
@@ -1602,12 +1641,58 @@ body.dark-mode .accordion-header:focus-visible {
 }
 
 .certification-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.certification-grid .glass-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    align-items: center;
+}
+
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(45, 140, 255, 0.1);
+    border: 1px solid rgba(45, 140, 255, 0.14);
+    color: var(--blue-deep);
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+    transition: transform 0.55s ease, background 0.45s ease;
+}
+
+body.dark-mode .cert-badge {
+    background: rgba(126, 191, 255, 0.14);
+    border-color: rgba(126, 191, 255, 0.2);
+    color: #dff4ff;
+}
+
+.certification-grid .glass-card:hover .cert-badge {
+    transform: scale(1.1);
 }
 
 .certification-grid .glass-card p {
     margin: 0;
     font-weight: 500;
+}
+
+.cert-issuer {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 0.15rem;
+}
+
+body.dark-mode .cert-issuer {
+    color: rgba(223, 236, 248, 0.75);
 }
 
 .contact-layout {
@@ -2275,6 +2360,7 @@ body.dark-mode .typing-target {
     .hero-grid,
     .contact-layout,
     .card-grid,
+    .card-grid.three-column,
     .two-column,
     .certification-grid {
         grid-template-columns: 1fr;
@@ -2422,7 +2508,10 @@ body.dark-mode .typing-target {
         gap: 0.65rem;
     }
 
-    .tech-logo-grid,
+    .tech-logo-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .tech-cluster-grid {
         grid-template-columns: 1fr 1fr;
     }
