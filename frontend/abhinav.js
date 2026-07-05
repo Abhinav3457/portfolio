@@ -5,12 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileNav();
     initTypingEffect(reducedMotion);
     initSectionTransitions(reducedMotion);
-    initAccordions();
     initRevealAnimations(reducedMotion);
     initContactForm();
+
+    if (!reducedMotion) {
+        initGlowEffects();
+    }
 });
 
-const CONTACT_API_URL = "https://portfolio-backend-tan6.onrender.com/api/feedback";
+const CONTACT_API_URL = window.location.origin + "/api/feedback";
 
 function initThemeToggle() {
     const toggle = document.getElementById("theme-toggle");
@@ -95,37 +98,14 @@ function initTypingEffect(reducedMotion) {
         if (index < fullText.length) {
             target.textContent += fullText.charAt(index);
             index += 1;
-            window.setTimeout(tick, 16);
+            window.setTimeout(tick, 28);
             return;
         }
 
         target.classList.add("is-complete");
     };
 
-    window.setTimeout(tick, 350);
-}
-
-function initAccordions() {
-    const accordions = document.querySelectorAll(".accordion");
-
-    accordions.forEach((accordion) => {
-        const trigger = accordion.querySelector(".accordion-header");
-        if (!trigger) {
-            return;
-        }
-
-        trigger.addEventListener("click", () => {
-            const isOpen = accordion.classList.contains("open");
-
-            accordions.forEach((item) => {
-                item.classList.remove("open");
-            });
-
-            if (!isOpen) {
-                accordion.classList.add("open");
-            }
-        });
-    });
+    window.setTimeout(tick, 800);
 }
 
 function initRevealAnimations(reducedMotion) {
@@ -184,6 +164,39 @@ function initSectionTransitions(reducedMotion) {
     sections.forEach((section) => observer.observe(section));
 }
 
+/* ── Glow Hover Effects ── */
+function initGlowEffects() {
+    const glowElements = document.querySelectorAll(".glass-card, .tech-logo-chip, .tech-cluster-card");
+
+    if (!glowElements.length) {
+        return;
+    }
+
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+        return;
+    }
+
+    glowElements.forEach((element) => {
+        element.addEventListener("mousemove", (event) => {
+            window.requestAnimationFrame(() => {
+                const rect = element.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                element.style.setProperty("--glow-x", x + "px");
+                element.style.setProperty("--glow-y", y + "px");
+                element.classList.add("glow-active");
+            });
+        });
+
+        element.addEventListener("mouseleave", () => {
+            element.classList.remove("glow-active");
+            element.style.removeProperty("--glow-x");
+            element.style.removeProperty("--glow-y");
+        });
+    });
+}
+
 function initContactForm() {
     const form = document.getElementById("contact-form");
     const alertSlot = document.getElementById("form-alert-slot");
@@ -210,15 +223,25 @@ function initContactForm() {
         }
 
         if (window.bootstrap?.Alert) {
-            const alertInstance = new window.bootstrap.Alert(alertElement);
-            window.setTimeout(() => {
-                if (alertElement.isConnected) {
-                    alertInstance.close();
-                }
-            }, 5000);
+            try {
+                const alertInstance = new window.bootstrap.Alert(alertElement);
+                window.setTimeout(() => {
+                    if (alertElement && alertElement.isConnected) {
+                        alertInstance.close();
+                    }
+                }, 5000);
+            } catch (_) {
+                window.setTimeout(() => {
+                    if (alertElement && alertElement.isConnected) {
+                        alertElement.remove();
+                    }
+                }, 5000);
+            }
         } else {
             window.setTimeout(() => {
-                alertElement.remove();
+                if (alertElement && alertElement.isConnected) {
+                    alertElement.remove();
+                }
             }, 5000);
         }
     };

@@ -21,25 +21,15 @@
     <link rel="stylesheet" href="abhinav.css">
 </head>
 <body>
-    <div class="sky-background" aria-hidden="true">
-        <div class="lightning-bolt lightning-bolt-one"></div>
-        <div class="lightning-bolt lightning-bolt-two"></div>
-        <div class="lightning-bolt lightning-bolt-three"></div>
-        <div class="lightning-bolt lightning-bolt-four"></div>
-        <div class="lightning-bolt lightning-bolt-five"></div>
-        <div class="lightning-bolt lightning-bolt-six"></div>
-        <div class="cloud cloud-one"><span class="cloud-bolt cloud-bolt-one"></span></div>
-        <div class="cloud cloud-two"></div>
-        <div class="cloud cloud-three"><span class="cloud-bolt cloud-bolt-two"></span></div>
-        <div class="cloud cloud-four"></div>
-        <div class="cloud cloud-five"><span class="cloud-bolt cloud-bolt-three"></span></div>
-        <div class="cloud cloud-six"></div>
+    <div class="bg-ambient" aria-hidden="true">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
     </div>
 
     <div class="page-shell">
         <header class="site-header">
             <div class="brand-block">
-                <!-- <p class="brand-kicker">Portfolio</p> -->
                 <h1>Abhinav Thakur</h1>
             </div>
 
@@ -58,13 +48,12 @@
             <nav class="site-nav" id="site-nav" aria-label="Primary">
                 <ul>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#research">Research</a></li>
-                    <li><a href="#achievements">Achievements</a></li>
                     <li><a href="#education">Education</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#leetcode">LeetCode</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -129,104 +118,178 @@
         </header>
 
         <main>
+            <!-- ── Hero ── -->
             <section id="about" class="hero-section">
                 <div class="container hero-grid">
                     <div class="hero-copy reveal active">
-                        <span class="eyebrow">Full Stack Developer | Software Engineer | Cybersecurity Researcher</span>
-                        <p class="hero-intro-mark">I'M</p>
-                        <h2 class="hero-display">
-                            <span>ABHINAV</span>
-                            <span>THAKUR</span>
-                        </h2>
-                        <div class="hero-signature-line">
-                            <span>Dronacharya College of Engineering</span>
-                        </div>
-                        <p class="hero-text typing-target">
-                            Computer Science undergraduate with full-stack experience in React.js, FastAPI, and Node.js, and industry experience as a Frontend Developer Intern at QSkill. Springer-published researcher in Deep Learning for IoT Analytics with 200+ LeetCode problems solved.
-                        </p>
+                        <span class="eyebrow">Full Stack Developer &middot; Software Engineer &middot; Researcher</span>
+                        <h2 class="hero-name">Abhinav Thakur</h2>
+                        <p class="hero-subtitle typing-target">Building secure, full-stack systems at the intersection of software engineering and research.</p>
 
-                        <div class="hero-meta">
-                            <a
-                                class="info-pill"
-                                href="https://www.google.com/maps/search/?api=1&query=New+Delhi,+India"
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label="Open New Delhi, India in Google Maps"
-                            >
-                                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
-                                New Delhi, India
+                        <div class="hero-social">
+                            <a class="social-link" href="https://github.com/Abhinav3457" target="_blank" rel="noreferrer" aria-label="GitHub">
+                                <i class="bi bi-github"></i>
                             </a>
-                            <a class="info-pill" href="mailto:abhinav2005thakur@gmail.com" aria-label="Send email to Abhinav Thakur">
-                                <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-                                abhinav2005thakur@gmail.com
+                            <a class="social-link" href="https://linkedin.com/in/abhinav-thakur1008" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
                             </a>
-                            <a
-                                class="info-pill"
-                                href="https://github.com/Abhinav3457"
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label="Open GitHub profile"
-                            >
-                                <i class="bi bi-github" aria-hidden="true"></i>
-                                GitHub
+                            <a class="social-link" href="mailto:abhinav2005thakur@gmail.com" aria-label="Email">
+                                <i class="bi bi-envelope-fill"></i>
                             </a>
-                            <a
-                                class="info-pill"
-                                href="https://wa.me/917428203457"
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label="Open WhatsApp chat with Abhinav Thakur"
-                            >
-                                <i class="bi bi-whatsapp" aria-hidden="true"></i>
-                                WhatsApp
+                            <a class="social-link" href="https://www.google.com/maps/search/?api=1&query=New+Delhi,+India" target="_blank" rel="noreferrer" aria-label="Location">
+                                <i class="bi bi-geo-alt-fill"></i>
                             </a>
                         </div>
 
                         <div class="hero-actions">
                             <a class="primary-button" href="#projects" aria-label="Go to projects section">View Projects</a>
-                            <a class="secondary-button" href="https://www.linkedin.com/in/abhinav-thakur1008" target="_blank" rel="noreferrer" aria-label="Open LinkedIn profile">LinkedIn Profile</a>
+                            <a class="secondary-button" href="#contact" aria-label="Go to contact section">Get in Touch</a>
                         </div>
                     </div>
-
-                    <aside class="hero-panel reveal">
-                        <div class="stat-card">
-                            <span class="stat-label">Focus</span>
-                            <strong>Full-Stack Development</strong>
-                            <p>Building production-ready web apps with React.js, FastAPI, Node.js, and PostgreSQL.</p>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Experience</span>
-                            <strong>Frontend Developer Intern @ QSkill</strong>
-                            <p>Developed multilingual translation apps, dynamic UI components, and cloned production websites using React.js.</p>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Research</span>
-                            <strong>IoT + Deep Learning</strong>
-                            <p>Springer-published research exploring intelligent analytics for connected IoT systems.</p>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Problem Solving</span>
-                            <strong>200+ LeetCode Problems</strong>
-                            <p>Strong foundation in DSA across arrays, trees, graphs, and dynamic programming.</p>
-                        </div>
-                    </aside>
                 </div>
             </section>
 
-            <section id="skills" class="content-section">
+            <!-- ── Featured Highlights ── -->
+            <section id="highlights" class="content-section">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-tag">Highlights</span>
+                        <h2>What I've Been Working On</h2>
+                    </div>
+
+                    <div class="highlights-grid">
+                        <a class="highlight-card glass-card reveal" href="#projects">
+                            <div class="highlight-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                            <div>
+                                <h3>CAFW — Application Firewall</h3>
+                                <p>Real-time WAF built with FastAPI, React.js, Node.js, and PostgreSQL. Detects SQLi &amp; XSS attacks.</p>
+                            </div>
+                            <span class="highlight-arrow">&rarr;</span>
+                        </a>
+
+                        <a class="highlight-card glass-card reveal" href="#projects">
+                            <div class="highlight-icon">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <div>
+                                <h3>Stock Valuation System</h3>
+                                <p>Python engine scoring NSE/BSE stocks using Buffett, Lynch, Graham, DCF, and sector comparison frameworks.</p>
+                            </div>
+                            <span class="highlight-arrow">&rarr;</span>
+                        </a>
+
+                        <a class="highlight-card glass-card reveal" href="#research">
+                            <div class="highlight-icon">
+                                <i class="bi bi-journal-richtext"></i>
+                            </div>
+                            <div>
+                                <h3>Springer Publication</h3>
+                                <p>Deep Learning-Driven Analytics for IoT — published at ICT4SD 2025.</p>
+                            </div>
+                            <span class="highlight-arrow">&rarr;</span>
+                        </a>
+
+                        <a class="highlight-card glass-card reveal" href="#experience">
+                            <div class="highlight-icon">
+                                <i class="bi bi-code-slash"></i>
+                            </div>
+                            <div>
+                                <h3>QSkill Internship</h3>
+                                <p>Frontend Developer Intern — built multilingual apps, UI components, and production website clones.</p>
+                            </div>
+                            <span class="highlight-arrow">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Projects ── -->
+            <section id="projects" class="content-section alt-section">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-tag">Work</span>
+                        <h2>Featured Projects</h2>
+                    </div>
+
+                    <div class="card-grid">
+                        <article class="glass-card project-card reveal">
+                            <div class="project-card-header">
+                                <div class="project-icon">
+                                    <i class="bi bi-shield-lock"></i>
+                                </div>
+                                <div>
+                                    <h3>Centralized Application-Context Aware Firewall (CAFW)</h3>
+                                    <p class="card-subtitle">FastAPI &middot; React.js &middot; Node.js &middot; PostgreSQL &middot; JWT &middot; Vite</p>
+                                </div>
+                            </div>
+                            <ul class="detail-list">
+                                <li>Built a real-time WAF in FastAPI middleware to detect and block SQLi and XSS attacks, reducing the application attack surface.</li>
+                                <li>Implemented context-aware, endpoint-specific request validation with minimal false positives across all API routes.</li>
+                                <li>Designed 2FA combining JWT access tokens with TOTP, enforcing RBAC for privileged admin operations.</li>
+                                <li>Developed a React.js dashboard with REST API integration for real-time attack logging, analytics, and automated penetration testing simulations.</li>
+                            </ul>
+                        </article>
+
+                        <article class="glass-card project-card reveal">
+                            <div class="project-card-header">
+                                <div class="project-icon">
+                                    <i class="bi bi-graph-up-arrow"></i>
+                                </div>
+                                <div>
+                                    <h3>Stock Valuation System &mdash; Indian Listed Companies</h3>
+                                    <p class="card-subtitle">Python &middot; yfinance &middot; HTML/CSS/JavaScript</p>
+                                </div>
+                            </div>
+                            <ul class="detail-list">
+                                <li>Built a Python valuation engine that scores NSE/BSE stocks 0&ndash;100 using five investing frameworks: Buffett, Lynch, Graham, DCF, and sector comparison.</li>
+                                <li>Created a 10-year DCF model that calculates intrinsic value and margin of safety, then turns the score into a Buy/Hold/Avoid call.</li>
+                                <li>Made a lightweight dashboard with Browse, Top Picks, Compare, and About sections for searching and comparing stocks side by side.</li>
+                                <li>Pulled live data from yfinance with 24-hour caching, so repeat lookups across 65+ NIFTY stocks load almost instantly.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Experience ── -->
+            <section id="experience" class="content-section">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-tag">Industry</span>
+                        <h2>Experience</h2>
+                    </div>                        <div class="experience-center">
+                        <article class="glass-card project-card reveal">
+                            <div class="experience-header">
+                                <div>
+                                    <h3>Frontend Developer Intern</h3>
+                                    <p class="card-subtitle">QSkill &middot; Remote</p>
+                                </div>
+                                <span class="experience-date">Jun 2026 &ndash; Jul 2026</span>
+                            </div>
+                            <ul class="detail-list">
+                                <li>Developed a multilingual text translator web application using RapidAPI integration, handling asynchronous API calls, real-time state management, and dynamic UI rendering in React.js.</li>
+                                <li>Created a random string generator using React hooks (useState, useEffect) with custom length, character sets, and clipboard copy functionality.</li>
+                                <li>Implemented client-side routing via react-router-dom for seamless multi-page navigation.</li>
+                                <li>Cloned the Coding Ninjas website using React.js and Tailwind CSS with a fully responsive layout.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Skills ── -->
+            <section id="skills" class="content-section alt-section">
                 <div class="container">
                     <div class="section-heading reveal">
                         <span class="section-tag">Capabilities</span>
-                        <h2>Key Expertise</h2>
+                        <h2>Technical Skills</h2>
                     </div>
 
-                    <div class="card-grid two-column">
-                        <article class="glass-card reveal tech-skill-panel">
+                    <div class="card-grid">
+                        <article class="glass-card tech-skill-panel reveal">
                             <div class="tech-panel-header">
-                                <div>
-                                    <span class="micro-tag">Tech Stack</span>
-                                    <h3>Technical Skills</h3>
-                                </div>
                                 <p>Core tools, platforms, and libraries I use to build practical software systems.</p>
                             </div>
 
@@ -263,174 +326,182 @@
                                 </div>
                             </div>
                         </article>
-
                     </div>
                 </div>
             </section>
 
-            <section id="experience" class="content-section alt-section">
+            <!-- ── GitHub Activity ── -->
+            <section id="github" class="content-section">
                 <div class="container">
                     <div class="section-heading reveal">
-                        <span class="section-tag">Industry</span>
-                        <h2>Experience</h2>
+                        <span class="section-tag">Activity</span>
+                        <h2>GitHub Contributions</h2>
                     </div>
+                    <div class="github-graph-wrapper glass-card reveal">
+                        <img src="https://github-readme-activity-graph.vercel.app/graph?username=Abhinav3457&bg_color=ffffff00&color=6366f1&line=6366f1&point=4f46e5&area=true&area_color=6366f1&area_opacity=0.15&hide_border=true" alt="Abhinav Thakur's GitHub Activity Graph" class="github-graph-img">
+                    </div>
+                </div>
+            </section>
 
-                    <div class="card-grid">
-                        <article class="glass-card project-card reveal">
-                            <div class="experience-header">
-                                <div>
-                                    <h3>Frontend Developer Intern</h3>
-                                    <p class="card-subtitle">QSkill &middot; Remote</p>
-                                </div>
-                                <span class="experience-date">Jun 2026 &ndash; Jul 2026</span>
+            <!-- ── LeetCode Stats ── -->
+            <section id="leetcode" class="content-section alt-section">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-tag">Problem Solving</span>
+                        <h2>LeetCode Stats</h2>
+                    </div>
+                    <div class="leetcode-stats glass-card reveal">
+                        <div class="lc-total">
+                            <span class="lc-total-number">218</span>
+                            <span class="lc-total-label">Problems Solved</span>
+                        </div>
+                        <div class="lc-breakdown">
+                            <div class="lc-bar-row">
+                                <span class="lc-label lc-easy">Easy</span>
+                                <div class="lc-bar-track"><div class="lc-bar-fill lc-easy-fill" style="width: 37%"></div></div>
+                                <span class="lc-count">80</span>
                             </div>
-                            <ul class="detail-list">
-                                <li>Developed a multilingual text translator web application using RapidAPI integration, handling asynchronous API calls, real-time state management, and dynamic UI rendering in React.js.</li>
-                                <li>Created a random string generator using React hooks (useState, useEffect) with custom length, character sets, and clipboard copy functionality.</li>
-                                <li>Implemented client-side routing via react-router-dom for seamless multi-page navigation.</li>
-                                <li>Cloned the Coding Ninjas website using React.js and Tailwind CSS with a fully responsive layout.</li>
-                            </ul>
-                        </article>
+                            <div class="lc-bar-row">
+                                <span class="lc-label lc-medium">Medium</span>
+                                <div class="lc-bar-track"><div class="lc-bar-fill lc-medium-fill" style="width: 44%"></div></div>
+                                <span class="lc-count">95</span>
+                            </div>
+                            <div class="lc-bar-row">
+                                <span class="lc-label lc-hard">Hard</span>
+                                <div class="lc-bar-track"><div class="lc-bar-fill lc-hard-fill" style="width: 20%"></div></div>
+                                <span class="lc-count">43</span>
+                            </div>
+                        </div>
+                        <div class="lc-topics">
+                            <span class="lc-topic-tag">Arrays</span>
+                            <span class="lc-topic-tag">Trees</span>
+                            <span class="lc-topic-tag">Graphs</span>
+                            <span class="lc-topic-tag">Dynamic Programming</span>
+                            <span class="lc-topic-tag">Binary Search</span>
+                            <span class="lc-topic-tag">Strings</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="projects" class="content-section alt-section">
+            <!-- ── Journey Timeline ── -->
+            <section id="journey" class="content-section">
                 <div class="container">
                     <div class="section-heading reveal">
-                        <span class="section-tag">Work</span>
-                        <h2>Featured Projects</h2>
+                        <span class="section-tag">Journey</span>
+                        <h2>Career Timeline</h2>
                     </div>
-
-                    <div class="card-grid three-column">
-                        <article class="glass-card project-card reveal">
-                            <h3>Centralized Application-Context Aware Firewall (CAFW)</h3>
-                            <p class="card-subtitle">FastAPI &middot; React.js &middot; Node.js &middot; PostgreSQL &middot; JWT &middot; Vite</p>
-                            <ul class="detail-list">
-                                <li>Built a real-time WAF in FastAPI middleware to detect and block SQLi and XSS attacks, reducing the application attack surface.</li>
-                                <li>Implemented context-aware, endpoint-specific request validation with minimal false positives across all API routes.</li>
-                                <li>Designed 2FA combining JWT access tokens with TOTP, enforcing RBAC for privileged admin operations.</li>
-                                <li>Developed a React.js dashboard with REST API integration for real-time attack logging, analytics, and automated penetration testing simulations.</li>
-                            </ul>
-                        </article>
-
-                        <article class="glass-card project-card reveal">
-                            <h3>Stock Valuation System &mdash; Indian Listed Companies</h3>
-                            <p class="card-subtitle">Python &middot; yfinance &middot; HTML/CSS/JavaScript</p>
-                            <ul class="detail-list">
-                                <li>Built a Python valuation engine that scores NSE/BSE stocks 0&ndash;100 using five investing frameworks: Buffett, Lynch, Graham, DCF, and sector comparison.</li>
-                                <li>Created a 10-year DCF model that calculates intrinsic value and margin of safety, then turns the score into a Buy/Hold/Avoid call.</li>
-                                <li>Made a lightweight dashboard with Browse, Top Picks, Compare, and About sections for searching and comparing stocks side by side.</li>
-                                <li>Pulled live data from yfinance with 24-hour caching, so repeat lookups across 65+ NIFTY stocks load almost instantly.</li>
-                            </ul>
-                        </article>
-
-                        <article class="glass-card project-card reveal">
-                            <h3>AI-Based Stock Intelligence System</h3>
-                            <p class="card-subtitle">Next.js 15 &middot; React 19 &middot; TypeScript &middot; MongoDB &middot; Inngest &middot; Better Auth</p>
-                            <ul class="detail-list">
-                                <li>Tracked real-time stock data through a scalable full-stack setup.</li>
-                                <li>Built personalized watchlists and AI-powered news summaries.</li>
-                                <li>Automated daily alerts using mail and notification workflows.</li>
-                                <li>Designed an intelligent push-based stock monitoring experience.</li>
-                            </ul>
-                        </article>
+                    <div class="timeline">
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="timeline-year">2021</span>
+                                <h3>CBSE 10th — CGPA 8.8</h3>
+                                <p>Secondary school completion at Heera Public School, New Delhi.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="timeline-year">2023</span>
+                                <h3>CBSE 12th — CGPA 8.2</h3>
+                                <p>Senior secondary completion with focus on Science and Mathematics.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="timeline-year">2023</span>
+                                <h3>B.Tech CSE — Dronacharya College</h3>
+                                <p>Started Bachelor of Technology in Computer Science and Engineering. CGPA: 8.7/10.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="timeline-year">2025</span>
+                                <h3>Springer Publication</h3>
+                                <p>Published research paper on Deep Learning-Driven Analytics for IoT at ICT4SD 2025.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="timeline-year">2025</span>
+                                <h3>NPTEL Elite + Silver Medal</h3>
+                                <p>Awarded Elite + Silver Medal in Compiler Design certification by IITs.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="timeline-year">2026</span>
+                                <h3>Frontend Developer Intern @ QSkill</h3>
+                                <p>Built multilingual translation apps, UI components, and production website clones with React.js.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ── Research & Achievements ── -->
             <section id="research" class="content-section">
                 <div class="container">
                     <div class="section-heading reveal">
-                        <span class="section-tag">Publication</span>
-                        <h2>Research</h2>
-                    </div>
-
-                    <div class="accordion reveal">
-                        <button class="accordion-header" type="button">
-                            <span>Deep Learning-Driven Analytics for IoT</span>
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>
-                                I researched how deep learning can analyze IoT sensor data more effectively by exploring model choices,
-                                identifying core challenges, and studying future directions in intelligent analytics.
-                            </p>
-                            <p>
-                                Published in Springer:
-                                <a class="inline-link" href="https://link.springer.com/chapter/10.1007/978-3-032-06688-6_41" target="_blank" rel="noreferrer">
-                                    View publication
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="achievements" class="content-section alt-section">
-                <div class="container">
-                    <div class="section-heading reveal">
-                        <span class="section-tag">Highlights</span>
+                        <span class="section-tag">Research &amp; Recognition</span>
                         <h2>Achievements</h2>
                     </div>
 
-                    <div class="accordion-group">
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>NPTEL Elite + Silver Medal &mdash; Compiler Design</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>Awarded the <strong>Elite + Silver Medal</strong> (69%) in the NPTEL Compiler Design certification (2026), a national-level course by IITs under the SWAYAM initiative.</p>
+                    <div class="card-grid two-column">
+                        <article class="glass-card reveal">
+                            <div class="achievement-header">
+                                <span class="achievement-badge"><i class="bi bi-journal-richtext"></i></span>
+                                <div>
+                                    <h3>Deep Learning-Driven Analytics for IoT</h3>
+                                    <p class="card-subtitle">Springer Publication &middot; ICT4SD 2025</p>
+                                </div>
                             </div>
-                        </div>
+                            <p>Research paper exploring how deep learning can analyze IoT sensor data more effectively by exploring model choices, identifying core challenges, and studying future directions in intelligent analytics.</p>
+                            <a class="inline-link" href="https://link.springer.com/chapter/10.1007/978-3-032-06688-6_41" target="_blank" rel="noreferrer">View publication &rarr;</a>
+                        </article>
 
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>200+ LeetCode Problems Solved</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>Solved over 200 Data Structures &amp; Algorithms problems on LeetCode covering arrays, trees, graphs, and dynamic programming.</p>
+                        <article class="glass-card reveal">
+                            <div class="achievement-header">
+                                <span class="achievement-badge"><i class="bi bi-award-fill"></i></span>
+                                <div>
+                                    <h3>NPTEL Elite + Silver Medal</h3>
+                                    <p class="card-subtitle">Compiler Design &middot; 2026</p>
+                                </div>
                             </div>
-                        </div>
+                            <p>Awarded the <strong>Elite + Silver Medal</strong> (69%) in the NPTEL Compiler Design certification, a national-level course by IITs under the SWAYAM initiative.</p>
+                        </article>
 
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>Springer-Published Researcher &mdash; ICT4SD 2025</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>
-                                    Research paper <strong>"Deep Learning-Driven Analytics for Internet of Things (IoT): Models, Challenges, and Future Directions"</strong>
-                                    accepted, presented, and published by Springer at the ICT4SD International Conference &mdash; a notable achievement at the undergraduate level.
-                                </p>
+                        <article class="glass-card reveal">
+                            <div class="achievement-header">
+                                <span class="achievement-badge"><i class="bi bi-code-slash"></i></span>
+                                <div>
+                                    <h3>200+ LeetCode Problems Solved</h3>
+                                    <p class="card-subtitle">Data Structures &amp; Algorithms</p>
+                                </div>
                             </div>
-                        </div>
+                            <p>Solved over 200 problems covering arrays, trees, graphs, and dynamic programming on LeetCode.</p>
+                        </article>
 
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>Class Representative</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>Acted as the bridge between students and teachers while supporting communication and class coordination.</p>
+                        <article class="glass-card reveal">
+                            <div class="achievement-header">
+                                <span class="achievement-badge"><i class="bi bi-people-fill"></i></span>
+                                <div>
+                                    <h3>Leadership Roles</h3>
+                                    <p class="card-subtitle">Class Representative &middot; Science Club Coordinator</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>Science Club Coordinator</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>Led experiments, workshops, and competitions that encouraged scientific curiosity and participation.</p>
-                            </div>
-                        </div>
+                            <p>Acted as the bridge between students and teachers. Led experiments, workshops, and competitions that encouraged scientific curiosity and participation.</p>
+                        </article>
                     </div>
                 </div>
             </section>
 
+            <!-- ── Education ── -->
             <section id="education" class="content-section alt-section">
                 <div class="container">
                     <div class="section-heading reveal">
@@ -438,70 +509,64 @@
                         <h2>Education</h2>
                     </div>
 
-                    <div class="accordion-group">
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>Dronacharya College of Engineering &middot; Gurugram University</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>Bachelor of Technology in Computer Science and Engineering &mdash; 2023&ndash;2027</p>
-                                <p><strong>CGPA: 8.7 / 10</strong></p>
+                    <div class="card-grid">
+                        <article class="glass-card project-card reveal">
+                            <div class="experience-header">
+                                <div>
+                                    <h3>Dronacharya College of Engineering</h3>
+                                    <p class="card-subtitle">Gurugram University</p>
+                                </div>
+                                <span class="experience-date">2023 &ndash; 2027</span>
                             </div>
-                        </div>
+                            <p>Bachelor of Technology in Computer Science and Engineering</p>
+                            <p class="cgpa-highlight">CGPA: <strong>8.7 / 10</strong></p>
+                        </article>
 
-                        <div class="accordion reveal">
-                            <button class="accordion-header" type="button">
-                                <span>Heera Public School &middot; CBSE, New Delhi</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>CBSE Senior Secondary (12th) &mdash; CGPA: 7.8 (2023)</p>
-                                <p>CBSE Secondary (10th) &mdash; CGPA: 8.8 (2021)</p>
+                        <article class="glass-card project-card reveal">
+                            <div class="experience-header">
+                                <div>
+                                    <h3>Heera Public School</h3>
+                                    <p class="card-subtitle">CBSE, New Delhi</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="certifications" class="content-section">
-                <div class="container">
-                    <div class="section-heading reveal">
-                        <span class="section-tag">Learning</span>
-                        <h2>Certifications</h2>
-                    </div>
-
-                    <div class="card-grid certification-grid">
-                        <article class="glass-card reveal">
-                            <span class="cert-badge"><i class="bi bi-award-fill"></i></span>
-                            <p><strong>Compiler Design</strong> &mdash; Elite + Silver Medal (69%)</p>
-                            <span class="cert-issuer">NPTEL Certification &middot; 2026</span>
-                        </article>
-                        <article class="glass-card reveal">
-                            <span class="cert-badge"><i class="bi bi-journal-richtext"></i></span>
-                            <p><strong>Deep Learning-Driven Analytics for IoT</strong></p>
-                            <span class="cert-issuer">Springer Publication &middot; ICT4SD 2025</span>
-                        </article>
-                        <article class="glass-card reveal">
-                            <span class="cert-badge"><i class="bi bi-code-slash"></i></span>
-                            <p><strong>Data Structures &amp; Algorithms</strong></p>
-                            <span class="cert-issuer">200+ Problems Solved on LeetCode</span>
+                            <p>CBSE Senior Secondary (12th) &mdash; CGPA: 8.2 (2023)</p>
+                            <p>CBSE Secondary (10th) &mdash; CGPA: 8.8 (2021)</p>
                         </article>
                     </div>
                 </div>
             </section>
 
-            <section id="contact" class="content-section alt-section">
+            <!-- ── Contact ── -->
+            <section id="contact" class="content-section">
                 <div class="container">
                     <div class="section-heading reveal">
                         <span class="section-tag">Connect</span>
-                        <h2>Contact Me</h2>
+                        <h2>Get in Touch</h2>
                     </div>
 
                     <div class="contact-layout">
                         <div class="glass-card reveal">
                             <h3>Let's build something meaningful.</h3>
                             <p>I'm open to collaborations, internships, and conversations around software, AI, and security-focused systems.</p>
+
+                            <div class="contact-links">
+                                <a class="contact-link-item" href="mailto:abhinav2005thakur@gmail.com" aria-label="Send email">
+                                    <i class="bi bi-envelope-fill"></i>
+                                    <span>abhinav2005thakur@gmail.com</span>
+                                </a>
+                                <a class="contact-link-item" href="https://github.com/Abhinav3457" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+                                    <i class="bi bi-github"></i>
+                                    <span>github.com/Abhinav3457</span>
+                                </a>
+                                <a class="contact-link-item" href="https://linkedin.com/in/abhinav-thakur1008" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+                                    <i class="bi bi-linkedin"></i>
+                                    <span>linkedin.com/in/abhinav-thakur1008</span>
+                                </a>
+                                <a class="contact-link-item" href="https://wa.me/917428203457" target="_blank" rel="noreferrer" aria-label="WhatsApp chat">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <span>WhatsApp</span>
+                                </a>
+                            </div>
                         </div>
 
                         <form class="contact-form glass-card reveal" id="contact-form">
