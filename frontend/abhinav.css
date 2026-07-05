@@ -681,13 +681,14 @@ body.dark-mode .primary-button:focus-visible {
 .secondary-button:hover,
 .secondary-button:focus-visible {
     transform: translateY(var(--hover-lift));
-    border-color: var(--accent);
+    border-color: rgba(99, 102, 241, 0.25);
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.12), 0 0 50px rgba(99, 102, 241, 0.15);
     outline: none;
 }
 
 body.dark-mode .secondary-button:hover,
 body.dark-mode .secondary-button:focus-visible {
+    border-color: rgba(129, 140, 248, 0.3);
     box-shadow: 0 0 20px rgba(129, 140, 248, 0.15), 0 0 50px rgba(129, 140, 248, 0.2);
 }
 
