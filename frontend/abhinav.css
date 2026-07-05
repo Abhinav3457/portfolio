@@ -1515,7 +1515,6 @@ body.dark-mode .contact-form textarea {
     .lc-total-number { font-size: 2.2rem; }
 
     .tech-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .hero-profile-img { width: 110px; height: 110px; }
 }
 
 /* ── Responsive: ≤720px ── */
@@ -1579,6 +1578,7 @@ body.dark-mode .contact-form textarea {
     }
 
     .hero-name { font-size: clamp(2rem, 8vw, 3.5rem); }
+    .hero-profile-img { width: 110px; height: 110px; }
     .hero-subtitle { font-size: 0.95rem; }
 
     .hero-actions { flex-direction: column; align-items: stretch; }
