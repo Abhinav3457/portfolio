@@ -548,43 +548,6 @@ body.dark-mode .eyebrow {
     pointer-events: none;
 }
 
-/* Holographic sheen overlay */
-.hero-profile-img-wrapper::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 0, 128, 0.15) 0%,
-        rgba(0, 255, 255, 0.2) 25%,
-        rgba(128, 0, 255, 0.15) 50%,
-        rgba(255, 200, 0, 0.12) 75%,
-        rgba(0, 200, 255, 0.18) 100%
-    );
-    opacity: 0;
-    mix-blend-mode: color-dodge;
-    pointer-events: none;
-    z-index: 2;
-    transition: opacity 0.4s ease;
-}
-
-.hero-profile-img-wrapper.tilt-active::after {
-    opacity: 1;
-}
-
-body.dark-mode .hero-profile-img-wrapper::after {
-    mix-blend-mode: screen;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 0, 128, 0.25) 0%,
-        rgba(0, 255, 255, 0.3) 25%,
-        rgba(128, 0, 255, 0.25) 50%,
-        rgba(255, 200, 0, 0.2) 75%,
-        rgba(0, 200, 255, 0.28) 100%
-    );
-}
-
 /* Hover glow ring */
 .hero-profile-img-wrapper.tilt-active {
     box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.25), 0 0 30px rgba(99, 102, 241, 0.3), 0 0 60px rgba(139, 92, 246, 0.15);
