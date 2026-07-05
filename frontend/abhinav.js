@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initContactForm();
 
     initLeetCodeStats();
+    initProfileTilt(reducedMotion);
 });
 
 const CONTACT_API_URL = window.location.origin + "/api/feedback";
@@ -162,6 +163,43 @@ function initSectionTransitions(reducedMotion) {
     sections.forEach((section) => observer.observe(section));
 }
 
+
+/* ── Profile Photo Holographic Tilt ── */
+function initProfileTilt(reducedMotion) {
+    const wrapper = document.getElementById("hero-profile-tilt");
+    if (!wrapper) return;
+
+    const maxTilt = 20;
+    const maxPop = 25;
+
+    if (reducedMotion) {
+        wrapper.addEventListener("mouseenter", () => wrapper.classList.add("tilt-active"));
+        wrapper.addEventListener("mouseleave", () => {
+            wrapper.classList.remove("tilt-active");
+            wrapper.style.transform = "";
+        });
+        return;
+    }
+
+    wrapper.addEventListener("mouseenter", () => {
+        wrapper.classList.add("tilt-active");
+    });
+
+    wrapper.addEventListener("mousemove", (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * maxTilt * 2;
+        const rotateX = (0.5 - y) * maxTilt * 2;
+        const popZ = maxPop;
+        wrapper.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${popZ}px) scale(1.08)`;
+    });
+
+    wrapper.addEventListener("mouseleave", () => {
+        wrapper.classList.remove("tilt-active");
+        wrapper.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)";
+    });
+}
 
 function initLeetCodeStats() {
     const lcSection = document.querySelector('.leetcode-stats');
