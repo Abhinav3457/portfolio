@@ -8,9 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initRevealAnimations(reducedMotion);
     initContactForm();
 
-    if (!reducedMotion) {
-        initGlowEffects();
-    }
+    initLeetCodeStats();
 });
 
 const CONTACT_API_URL = window.location.origin + "/api/feedback";
@@ -164,37 +162,36 @@ function initSectionTransitions(reducedMotion) {
     sections.forEach((section) => observer.observe(section));
 }
 
-/* ── Glow Hover Effects ── */
-function initGlowEffects() {
-    const glowElements = document.querySelectorAll(".glass-card, .tech-logo-chip, .tech-cluster-card");
 
-    if (!glowElements.length) {
-        return;
-    }
+function initLeetCodeStats() {
+    const lcSection = document.querySelector('.leetcode-stats');
+    if (!lcSection) return;
 
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) {
-        return;
-    }
+    fetch(window.location.origin + '/api/leetcode')
+        .then(res => res.ok ? res.json() : null)
+        .then(stats => {
+            if (!stats || !stats.total) return;
 
-    glowElements.forEach((element) => {
-        element.addEventListener("mousemove", (event) => {
-            window.requestAnimationFrame(() => {
-                const rect = element.getBoundingClientRect();
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
-                element.style.setProperty("--glow-x", x + "px");
-                element.style.setProperty("--glow-y", y + "px");
-                element.classList.add("glow-active");
-            });
-        });
+            const total = lcSection.querySelector('.lc-total-number');
+            if (total) total.textContent = stats.total;
 
-        element.addEventListener("mouseleave", () => {
-            element.classList.remove("glow-active");
-            element.style.removeProperty("--glow-x");
-            element.style.removeProperty("--glow-y");
-        });
-    });
+            const easyCount = lcSection.querySelector('.lc-easy-fill');
+            const mediumCount = lcSection.querySelector('.lc-medium-fill');
+            const hardCount = lcSection.querySelector('.lc-hard-fill');
+
+            const easyLabel = lcSection.querySelector('.lc-easy-fill')?.closest('.lc-bar-row')?.querySelector('.lc-count');
+            const mediumLabel = lcSection.querySelector('.lc-medium-fill')?.closest('.lc-bar-row')?.querySelector('.lc-count');
+            const hardLabel = lcSection.querySelector('.lc-hard-fill')?.closest('.lc-bar-row')?.querySelector('.lc-count');
+
+            if (easyCount) easyCount.style.width = ((stats.easy / stats.total) * 100).toFixed(0) + '%';
+            if (mediumCount) mediumCount.style.width = ((stats.medium / stats.total) * 100).toFixed(0) + '%';
+            if (hardCount) hardCount.style.width = ((stats.hard / stats.total) * 100).toFixed(0) + '%';
+
+            if (easyLabel) easyLabel.textContent = stats.easy;
+            if (mediumLabel) mediumLabel.textContent = stats.medium;
+            if (hardLabel) hardLabel.textContent = stats.hard;
+        })
+        .catch(() => {});
 }
 
 function initContactForm() {
