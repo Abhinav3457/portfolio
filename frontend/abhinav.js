@@ -6,13 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     initTypingEffect(reducedMotion);
     initSectionTransitions(reducedMotion);
     initRevealAnimations(reducedMotion);
-    initContactForm();
 
     initLeetCodeStats();
     initProfileTilt(reducedMotion);
 });
-
-const CONTACT_API_URL = window.location.origin + "/api/feedback";
 
 function initThemeToggle() {
     const toggle = document.getElementById("theme-toggle");
@@ -232,110 +229,3 @@ function initLeetCodeStats() {
         .catch(() => {});
 }
 
-function initContactForm() {
-    const form = document.getElementById("contact-form");
-    const alertSlot = document.getElementById("form-alert-slot");
-    if (!form) {
-        return;
-    }
-
-    const showFormAlert = (variant, title, message) => {
-        if (!alertSlot) {
-            return;
-        }
-
-        alertSlot.innerHTML = `
-            <div class="alert alert-${variant} alert-dismissible fade show" role="alert">
-                <div class="alert-heading">${title}</div>
-                <p class="alert-body">${message}</p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
-
-        const alertElement = alertSlot.querySelector(".alert");
-        if (!alertElement) {
-            return;
-        }
-
-        if (window.bootstrap?.Alert) {
-            try {
-                const alertInstance = new window.bootstrap.Alert(alertElement);
-                window.setTimeout(() => {
-                    if (alertElement && alertElement.isConnected) {
-                        alertInstance.close();
-                    }
-                }, 5000);
-            } catch (_) {
-                window.setTimeout(() => {
-                    if (alertElement && alertElement.isConnected) {
-                        alertElement.remove();
-                    }
-                }, 5000);
-            }
-        } else {
-            window.setTimeout(() => {
-                if (alertElement && alertElement.isConnected) {
-                    alertElement.remove();
-                }
-            }, 5000);
-        }
-    };
-
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const messageInput = document.getElementById("message");
-        const submitButton = form.querySelector('button[type="submit"]');
-
-        const payload = {
-            name: nameInput?.value.trim() || "",
-            email: emailInput?.value.trim() || "",
-            message: messageInput?.value.trim() || ""
-        };
-
-        if (!payload.name || !payload.email || !payload.message) {
-            showFormAlert("danger", "Missing details", "Please fill in your name, email, and message.");
-            return;
-        }
-
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
-        }
-
-        try {
-            const response = await fetch(CONTACT_API_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const responseType = response.headers.get("content-type") || "";
-            const result = responseType.includes("application/json")
-                ? await response.json()
-                : {};
-
-            if (!response.ok || !result.saved) {
-                throw new Error(result.message || "Something went wrong.");
-            }
-
-            showFormAlert(
-                "success",
-                "Message sent",
-                result.message || `Thank you, ${payload.name}! Your message has been received.`
-            );
-            form.reset();
-        } catch (error) {
-            showFormAlert("danger", "Unable to send", error.message || "Unable to send feedback right now.");
-        } finally {
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = "Send Message";
-            }
-        }
-    });
-}
