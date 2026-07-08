@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initProfileTilt(reducedMotion);
     initButtonSparkles(reducedMotion);
     initTimelineAnimations(reducedMotion);
+    initHeroStats(reducedMotion);
 });
 
 function initThemeToggle() {
@@ -288,6 +289,55 @@ function createSparkle(container, x, y, symbols) {
 
     container.appendChild(el);
     el.addEventListener('animationend', () => el.remove());
+}
+
+/* ── Hero Stats Count-Up ── */
+function initHeroStats(reducedMotion) {
+    const stats = document.querySelectorAll('.hero-stat-number[data-target]');
+    if (!stats.length) return;
+
+    const duration = reducedMotion ? 0 : 1400;
+
+    const animateStat = (el) => {
+        const target = parseFloat(el.dataset.target);
+        const isDecimal = el.dataset.decimal === 'true';
+        const startTime = performance.now();
+
+        if (duration === 0) {
+            el.textContent = isDecimal ? target.toFixed(1) : target;
+            return;
+        }
+
+        const step = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            /* Ease-out cubic for a smooth deceleration */
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+
+            el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateStat(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.5 }
+    );
+
+    stats.forEach((stat) => observer.observe(stat));
 }
 
 /* ── Timeline Animations ── */
