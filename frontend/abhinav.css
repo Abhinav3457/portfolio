@@ -534,54 +534,7 @@ body.dark-mode .eyebrow {
     border-color: rgba(129, 140, 248, 0.2);
 }
 
-/* ── Hero Top Row ── */
-.hero-top-row {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin-bottom: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
-/* ── Availability Badge ── */
-.availability-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(16, 185, 129, 0.08);
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    color: #059669;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-}
-
-body.dark-mode .availability-badge {
-    background: rgba(16, 185, 129, 0.1);
-    border-color: rgba(16, 185, 129, 0.25);
-    color: #34d399;
-}
-
-.availability-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #10b981;
-    animation: availability-pulse 2s ease-in-out infinite;
-}
-
-body.dark-mode .availability-dot {
-    background: #34d399;
-}
-
-@keyframes availability-pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
-}
 
 /* ── Hero Profile Photo ── */
 .hero-profile {
@@ -1535,64 +1488,7 @@ body.dark-mode .tech-cluster-card {
     flex-shrink: 0;
 }
 
-/* ── Hero Tech Strip ── */
-.hero-tech-strip {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
-.tech-strip-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-right: 0.2rem;
-}
-
-.tech-strip-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    justify-content: center;
-}
-
-.tech-strip-chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.3rem 0.65rem;
-    border-radius: 999px;
-    background: rgba(99, 102, 241, 0.06);
-    border: 1px solid rgba(99, 102, 241, 0.12);
-    color: var(--text-muted);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                background 0.3s ease,
-                border-color 0.3s ease,
-                color 0.3s ease;
-}
-
-.tech-strip-chip:hover {
-    transform: translateY(-2px);
-    background: rgba(99, 102, 241, 0.12);
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-body.dark-mode .tech-strip-chip {
-    background: rgba(129, 140, 248, 0.08);
-    border-color: rgba(129, 140, 248, 0.15);
-}
-
-body.dark-mode .tech-strip-chip:hover {
-    background: rgba(129, 140, 248, 0.15);
-}
 
 /* ── Button Sparkle ── */
 .hero-actions {
@@ -1781,8 +1677,6 @@ body.dark-mode .tech-strip-chip:hover {
     .hero-stat-label { font-size: 0.6rem; }
     .hero-stat-divider { height: 28px; }
 
-    .hero-tech-strip { margin-top: 1rem; }
-
     .hero-actions { flex-direction: column; align-items: stretch; }
     .primary-button, .secondary-button { width: 100%; }
 
@@ -1840,8 +1734,6 @@ body.dark-mode .tech-strip-chip:hover {
     .hero-name { font-size: clamp(1.8rem, 9vw, 3rem); }
     .hero-profile-img-wrapper { width: 100px; height: 100px; }
 
-    .hero-top-row { flex-direction: column; gap: 0.4rem; }
-
     .hero-stats {
         flex-wrap: wrap;
         padding: 0.75rem 0.6rem;
@@ -1856,9 +1748,6 @@ body.dark-mode .tech-strip-chip:hover {
     .hero-stat-suffix { font-size: 0.9rem; }
     .hero-stat-label { font-size: 0.55rem; }
     .hero-stat-divider { height: 24px; }
-
-    .hero-tech-strip-chips { gap: 0.3rem; }
-    .tech-strip-chip { font-size: 0.65rem; padding: 0.25rem 0.5rem; }
 
     .eyebrow, .section-tag, .micro-tag, .cluster-label { letter-spacing: 0.1em; }
     .hero-copy, .glass-card { border-radius: 18px; }
