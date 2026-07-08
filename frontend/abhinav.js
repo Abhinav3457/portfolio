@@ -36,6 +36,13 @@ function applyTheme(useDarkMode) {
     document.body.classList.toggle("dark-mode", useDarkMode);
     window.localStorage.setItem("portfolio-theme", useDarkMode ? "dark" : "light");
 
+    /* Update LeetCode card theme to match portfolio */
+    const lcImg = document.querySelector(".lc-chart-img");
+    if (lcImg) {
+        const newTheme = useDarkMode ? "dark" : "light";
+        lcImg.src = lcImg.src.replace(/theme=[^&]+/, `theme=${newTheme}`);
+    }
+
     if (!toggle) {
         return;
     }
