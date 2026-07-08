@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initSectionTransitions(reducedMotion);
     initRevealAnimations(reducedMotion);
 
-    initLeetCodeStats(reducedMotion);
     initProfileTilt(reducedMotion);
     initButtonSparkles(reducedMotion);
     initTimelineAnimations(reducedMotion);
@@ -282,89 +281,6 @@ function createSparkle(container, x, y, symbols) {
 
     container.appendChild(el);
     el.addEventListener('animationend', () => el.remove());
-}
-
-/* ── Smooth Number Counter ── */
-function animateNumber(el, target, duration) {
-    const start = 0;
-    const startTime = performance.now();
-
-    function tick(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        /* Ease-out cubic for smooth deceleration */
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(start + (target - start) * eased);
-        el.textContent = current;
-
-        if (progress < 1) {
-            requestAnimationFrame(tick);
-        }
-    }
-
-    requestAnimationFrame(tick);
-}
-
-/* ── LeetCode Stats with Animated Bars ── */
-function initLeetCodeStats(reducedMotion) {
-    const lcSection = document.querySelector('.leetcode-stats');
-    if (!lcSection) return;
-
-    /* Animate bar fills when section scrolls into view */
-    const lcObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                lcObserver.unobserve(entry.target);
-                fillBars();
-            }
-        });
-    }, { threshold: 0.3 });
-
-    lcObserver.observe(lcSection);
-
-    function fillBars() {
-        const fills = lcSection.querySelectorAll('.lc-bar-fill');
-        fills.forEach((fill, i) => {
-            const targetWidth = fill.style.width || '0%';
-            fill.style.width = '0%';
-            setTimeout(() => {
-                fill.style.width = targetWidth;
-            }, 200 + i * 150);
-        });
-    }
-
-    fetch(window.location.origin + '/api/leetcode')
-        .then(res => res.ok ? res.json() : null)
-        .then(stats => {
-            if (!stats || !stats.total) return;
-
-            const total = lcSection.querySelector('.lc-total-number');
-            if (total && !reducedMotion) {
-                animateNumber(total, stats.total, 1400);
-            } else if (total) {
-                total.textContent = stats.total;
-            }
-
-            const easyFill = lcSection.querySelector('.lc-easy-fill');
-            const mediumFill = lcSection.querySelector('.lc-medium-fill');
-            const hardFill = lcSection.querySelector('.lc-hard-fill');
-
-            const easyLabel = lcSection.querySelector('.lc-easy-fill')?.closest('.lc-bar-row')?.querySelector('.lc-count');
-            const mediumLabel = lcSection.querySelector('.lc-medium-fill')?.closest('.lc-bar-row')?.querySelector('.lc-count');
-            const hardLabel = lcSection.querySelector('.lc-hard-fill')?.closest('.lc-bar-row')?.querySelector('.lc-count');
-
-            if (easyFill) easyFill.style.width = ((stats.easy / stats.total) * 100).toFixed(0) + '%';
-            if (mediumFill) mediumFill.style.width = ((stats.medium / stats.total) * 100).toFixed(0) + '%';
-            if (hardFill) hardFill.style.width = ((stats.hard / stats.total) * 100).toFixed(0) + '%';
-
-            if (easyLabel && !reducedMotion) animateNumber(easyLabel, stats.easy, 1200);
-            else if (easyLabel) easyLabel.textContent = stats.easy;
-            if (mediumLabel && !reducedMotion) animateNumber(mediumLabel, stats.medium, 1200);
-            else if (mediumLabel) mediumLabel.textContent = stats.medium;
-            if (hardLabel && !reducedMotion) animateNumber(hardLabel, stats.hard, 1200);
-            else if (hardLabel) hardLabel.textContent = stats.hard;
-        })
-        .catch(() => {});
 }
 
 /* ── Timeline Animations ── */
