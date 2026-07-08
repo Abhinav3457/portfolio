@@ -1,7 +1,7 @@
 :root {
     --bg-main: #ffffff;
     --bg-soft: rgba(255, 255, 255, 0.9);
-    --bg-panel: rgba(255, 255, 255, 0.97);
+
     --line: rgba(99, 102, 241, 0.12);
     --line-strong: rgba(99, 102, 241, 0.28);
     --text-main: #111827;
@@ -13,14 +13,11 @@
     --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 20px 56px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 24px 60px rgba(0, 0, 0, 0.12);
     --glow-subtle: 0 0 30px rgba(99, 102, 241, 0.08);
-    --glow-hover: 0 0 40px rgba(99, 102, 241, 0.12);
     --hover-duration: 0.5s;
     --hover-easing: cubic-bezier(0.22, 1, 0.36, 1);
     --hover-lift: -5px;
     --radius-xl: 24px;
-    --radius-lg: 18px;
     --radius-md: 14px;
     --container: 1200px;
     --container-wide: 1320px;
@@ -31,7 +28,7 @@
 body.dark-mode {
     --bg-main: #000000;
     --bg-soft: rgba(18, 18, 18, 0.85);
-    --bg-panel: rgba(12, 12, 12, 0.95);
+
     --line: rgba(129, 140, 248, 0.12);
     --line-strong: rgba(129, 140, 248, 0.25);
     --text-main: #f0f0f5;
@@ -43,9 +40,7 @@ body.dark-mode {
     --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.6);
     --shadow-lg: 0 20px 56px rgba(0, 0, 0, 0.7);
-    --shadow-hover: 0 24px 60px rgba(0, 0, 0, 0.75);
     --glow-subtle: 0 0 30px rgba(129, 140, 248, 0.1);
-    --glow-hover: 0 0 40px rgba(129, 140, 248, 0.15);
 }
 
 * { box-sizing: border-box; }
@@ -113,15 +108,6 @@ body.dark-mode::after {
     pointer-events: none;
     z-index: 0;
     perspective: 1200px;
-}
-
-.bg-depth-layer {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-    transform-style: preserve-3d;
 }
 
 .orb {
@@ -496,14 +482,7 @@ body.dark-mode .hero-grid::before {
     text-align: center;
     padding: clamp(1rem, 3vw, 2rem) 0 clamp(1.5rem, 3vw, 2.5rem);
     gap: 0;
-}
-
-.hero-copy {
     border: none;
-}
-
-.site-header {
-    border: 1px solid var(--line);
 }
 
 
@@ -1149,7 +1128,6 @@ body.dark-mode .secondary-button:focus-visible {
 .tech-panel-header { display: grid; gap: 0.3rem; }
 .tech-panel-header p { margin: 0; max-width: 58ch; }
 
-.micro-tag,
 .cluster-label {
     display: inline-flex;
     width: fit-content;
@@ -1447,6 +1425,7 @@ body.dark-mode .tech-cluster-card {
     border: 1px solid var(--line);
     backdrop-filter: blur(16px);
     box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
 }
 
 .hero-stat-item {
@@ -1556,7 +1535,6 @@ body.dark-mode .tech-cluster-card {
     .hero-section, .content-section, .section-heading, .hero-copy, .card-grid,
     .highlights-grid, .contact-layout { animation: none !important; opacity: 1 !important; transform: none !important; }
     .orb { animation: none; transform: none !important; }
-    .bg-depth-layer { transform: none !important; }
 }
 
 /* ── Keyframes ── */
@@ -1749,7 +1727,7 @@ body.dark-mode .tech-cluster-card {
     .hero-stat-label { font-size: 0.55rem; }
     .hero-stat-divider { height: 24px; }
 
-    .eyebrow, .section-tag, .micro-tag, .cluster-label { letter-spacing: 0.1em; }
+    .eyebrow, .section-tag, .cluster-label { letter-spacing: 0.1em; }
     .hero-copy, .glass-card { border-radius: 18px; }
     .glass-card h3 { font-size: 1rem; }
 
@@ -1773,9 +1751,27 @@ body.dark-mode .tech-cluster-card {
 
     .hero-subtitle, .glass-card p, .detail-list li { font-size: 0.88rem; }
 
+    .hero-social { gap: 0.5rem; margin-top: 1.4rem; }
+    .social-link { width: 2.4rem; height: 2.4rem; font-size: 0.95rem; }
+
+    .hero-stats { padding: 0.6rem 0.5rem; gap: 0; }
+    .hero-stat-item { padding: 0 0.4rem; min-width: 48px; }
+    .hero-stat-number { font-size: 1rem; }
+    .hero-stat-suffix { font-size: 0.8rem; }
+    .hero-stat-label { font-size: 0.5rem; letter-spacing: 0.04em; }
+    .hero-stat-divider { height: 20px; }
+
     .primary-button, .secondary-button {
         min-height: 2.7rem;
         padding-inline: 0.8rem;
         font-size: 0.85rem;
     }
+
+    .hero-actions { gap: 0.6rem; margin-top: 1.2rem; }
+    .hero-name { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+    .hero-profile-img-wrapper { width: 80px; height: 80px; }
+    .hero-profile-img { border-width: 3px; }
+    .hero-profile-ring { inset: -6px; }
+    .hero-copy { padding: 0.5rem 0 1rem; }
+    .eyebrow { font-size: 0.65rem; padding: 0.35rem 0.7rem; margin-bottom: 0.8rem; }
 }
