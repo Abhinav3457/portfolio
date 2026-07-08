@@ -960,98 +960,10 @@ body.dark-mode .secondary-button:focus-visible {
 
 /* ── LeetCode Stats ── */
 .leetcode-stats {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    gap: 1.5rem 2rem;
-    align-items: start;
-    padding: 2rem;
-}
-
-.lc-total {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 2rem;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.05));
-    border-radius: 16px;
-    border: 1px solid rgba(99, 102, 241, 0.12);
-}
-
-.lc-total-number {
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-}
-
-.lc-total-label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.3rem;
-}
-
-.lc-breakdown {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    justify-content: center;
-}
-
-.lc-bar-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.lc-label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    min-width: 55px;
-    text-align: right;
-}
-
-.lc-easy { color: #22c55e; }
-.lc-medium { color: #f59e0b; }
-.lc-hard { color: #ef4444; }
-
-.lc-bar-track {
-    flex: 1;
-    height: 10px;
-    border-radius: 999px;
-    background: rgba(99, 102, 241, 0.06);
-    overflow: hidden;
-}
-
-.lc-bar-fill {
-    height: 100%;
-    border-radius: 999px;
-    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.lc-easy-fill { background: linear-gradient(90deg, #22c55e, #16a34a); }
-.lc-medium-fill { background: linear-gradient(90deg, #f59e0b, #d97706); }
-.lc-hard-fill { background: linear-gradient(90deg, #ef4444, #dc2626); }
-
-.lc-count {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    min-width: 35px;
-}
-
-.lc-topics {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    padding: 1.5rem;
 }
 
 .lc-chart-wrapper {
-    grid-column: 1 / -1;
-    margin-top: 1rem;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--line);
@@ -1067,17 +979,6 @@ body.dark-mode .secondary-button:focus-visible {
     height: auto;
     display: block;
     border-radius: 16px;
-}
-
-.lc-topic-tag {
-    display: inline-flex;
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
-    background: rgba(99, 102, 241, 0.06);
-    border: 1px solid rgba(99, 102, 241, 0.1);
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    font-weight: 500;
 }
 
 /* ── Timeline ── */
@@ -1616,14 +1517,6 @@ body.dark-mode .tech-cluster-card {
         grid-template-columns: 1fr;
     }
 
-    .leetcode-stats {
-        grid-template-columns: 1fr;
-        justify-items: center;
-    }
-
-    .lc-total { padding: 1.2rem 1.5rem; }
-    .lc-total-number { font-size: 2.2rem; }
-
     .tech-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -1757,11 +1650,7 @@ body.dark-mode .tech-cluster-card {
     .hero-copy, .glass-card { border-radius: 18px; }
     .glass-card h3 { font-size: 1rem; }
 
-    .leetcode-stats { padding: 1.2rem; gap: 1rem 1.2rem; }
-    .lc-total { padding: 1rem 1.2rem; }
-    .lc-total-number { font-size: 1.8rem; }
-    .lc-label { min-width: 45px; font-size: 0.75rem; }
-    .lc-count { min-width: 30px; font-size: 0.75rem; }
+    .leetcode-stats { padding: 1rem; }
 
     .timeline { padding-left: 1.5rem; }
     .timeline-dot { left: -1.5rem; }
