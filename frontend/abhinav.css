@@ -1049,6 +1049,26 @@ body.dark-mode .secondary-button:focus-visible {
     margin-top: 0.5rem;
 }
 
+.lc-chart-wrapper {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lc-chart-wrapper:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.lc-chart-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+}
+
 .lc-topic-tag {
     display: inline-flex;
     padding: 0.3rem 0.7rem;
