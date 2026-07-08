@@ -664,11 +664,15 @@ body.dark-mode .hero-profile-img-wrapper.tilt-active {
 }
 
 .primary-button {
-    border: none;
-    color: #ffffff;
-    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.3);
+    border: 1px solid var(--line);
+    color: var(--text-main);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
+}
+
+body.dark-mode .primary-button {
+    background: rgba(18, 18, 18, 0.7);
 }
 
 .secondary-button {
@@ -685,13 +689,15 @@ body.dark-mode .secondary-button {
 .primary-button:hover,
 .primary-button:focus-visible {
     transform: scale(1.1);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2), 0 0 40px rgba(99, 102, 241, 0.35), 0 0 80px rgba(139, 92, 246, 0.15);
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.12), 0 0 50px rgba(99, 102, 241, 0.15);
     outline: none;
 }
 
 body.dark-mode .primary-button:hover,
 body.dark-mode .primary-button:focus-visible {
-    box-shadow: 0 8px 24px rgba(129, 140, 248, 0.25), 0 0 40px rgba(129, 140, 248, 0.4), 0 0 80px rgba(139, 92, 246, 0.2);
+    border-color: rgba(129, 140, 248, 0.3);
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.15), 0 0 50px rgba(129, 140, 248, 0.2);
 }
 
 .secondary-button:hover,
@@ -1521,11 +1527,11 @@ body.dark-mode .tech-cluster-card {
 }
 
 .primary-button .sparkle {
-    color: #ffffff;
+    color: var(--accent);
 }
 
 .primary-button .sparkle::before {
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(199, 210, 254, 0.6);
+    text-shadow: 0 0 4px rgba(99, 102, 241, 0.6), 0 0 8px rgba(139, 92, 246, 0.4);
 }
 
 .secondary-button .sparkle {
