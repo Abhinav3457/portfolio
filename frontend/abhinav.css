@@ -374,6 +374,7 @@ body.dark-mode .nav-toggle {
 }
 
 .site-nav a {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -384,18 +385,33 @@ body.dark-mode .nav-toggle {
     font-weight: 500;
     text-decoration: none;
     color: var(--text-muted);
-    transition: transform var(--hover-duration) var(--hover-easing),
-                background var(--hover-duration) var(--hover-easing),
-                color var(--hover-duration) var(--hover-easing),
+    overflow: hidden;
+    transition: background var(--hover-duration) var(--hover-easing),
                 box-shadow var(--hover-duration) var(--hover-easing);
+}
+
+.site-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--accent);
+    transform: translateX(-50%);
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+    width: 55%;
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
-    color: var(--accent);
-    background: rgba(99, 102, 241, 0.08);
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.06);
-    transform: translateY(var(--hover-lift));
+    background: rgba(99, 102, 241, 0.06);
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.04);
     outline: none;
 }
 
