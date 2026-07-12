@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Abhinav Thakur | Portfolio</title>
     <link rel="icon" href="data:,">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="abhinav.css">
 </head>
 <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
     <div class="bg-ambient" aria-hidden="true">
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
@@ -160,17 +162,17 @@
                                 <span class="hero-stat-number" data-target="200">0</span><span class="hero-stat-suffix">+</span>
                                 <span class="hero-stat-label">Problems Solved</span>
                             </div>
-                            <div class="hero-stat-divider"></div>
+
                             <div class="hero-stat-item">
                                 <span class="hero-stat-number" data-target="8.7" data-decimal="true">0</span>
                                 <span class="hero-stat-label">CGPA</span>
                             </div>
-                            <div class="hero-stat-divider"></div>
+
                             <div class="hero-stat-item">
                                 <span class="hero-stat-number" data-target="5">0</span><span class="hero-stat-suffix">+</span>
                                 <span class="hero-stat-label">Projects</span>
                             </div>
-                            <div class="hero-stat-divider"></div>
+
                             <div class="hero-stat-item">
                                 <span class="hero-stat-number" data-target="1">0</span>
                                 <span class="hero-stat-label">Publication</span>
@@ -602,6 +604,85 @@
                 </div>
             </section>
         </main>
+
+        <!-- ── Footer CTA Banner ── -->
+        <section class="footer-cta reveal">
+            <div class="container">
+                <div class="footer-cta-inner">
+                    <div class="footer-cta-orbs" aria-hidden="true">
+                        <div class="footer-orb footer-orb-1"></div>
+                        <div class="footer-orb footer-orb-2"></div>
+                    </div>
+                    <span class="footer-cta-tag">Open to opportunities</span>
+                    <h2 class="footer-cta-heading">Let's Build Something <span class="footer-cta-accent">Extraordinary</span> Together</h2>
+                    <p class="footer-cta-desc">I'm always excited to collaborate on impactful projects. Whether it's a startup idea, open-source contribution, or research initiative — let's connect.</p>
+                    <div class="footer-cta-actions">
+                        <a class="primary-button" href="mailto:abhinav2005thakur@gmail.com"><i class="bi bi-envelope-fill" style="margin-right:0.4rem"></i>Send me an email</a>
+                        <a class="secondary-button" href="https://linkedin.com/in/abhinav-thakur1008" target="_blank" rel="noreferrer"><i class="bi bi-linkedin" style="margin-right:0.4rem"></i>Connect on LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Footer ── -->
+        <footer class="site-footer">
+            <div class="footer-glow" aria-hidden="true"></div>
+            <div class="container">
+                <div class="footer-inner">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span class="footer-logo-icon"><i class="bi bi-code-slash"></i></span>
+                            <h2 class="footer-name">Abhinav Thakur</h2>
+                        </div>
+                        <p class="footer-tagline">Building secure, full-stack systems at the intersection of software engineering and research.</p>
+                        <div class="footer-social">
+                            <a class="footer-social-link" href="https://github.com/Abhinav3457" target="_blank" rel="noreferrer" aria-label="GitHub">
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a class="footer-social-link" href="https://linkedin.com/in/abhinav-thakur1008" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a class="footer-social-link" href="mailto:abhinav2005thakur@gmail.com" aria-label="Email">
+                                <i class="bi bi-envelope-fill"></i>
+                            </a>
+                            <a class="footer-social-link" href="https://leetcode.com/u/Abhinnav91/" target="_blank" rel="noreferrer" aria-label="LeetCode">
+                                <i class="bi bi-code-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-col">
+                            <h3>Navigation</h3>
+                            <ul>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#projects">Projects</a></li>
+                                <li><a href="#experience">Experience</a></li>
+                                <li><a href="#skills">Skills</a></li>
+                                <li><a href="#research">Research</a></li>
+                                <li><a href="#education">Education</a></li>
+                                <li><a href="#leetcode">LeetCode</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h3>Connect</h3>
+                            <ul>
+                                <li><a href="https://github.com/Abhinav3457" target="_blank" rel="noreferrer">GitHub</a></li>
+                                <li><a href="https://linkedin.com/in/abhinav-thakur1008" target="_blank" rel="noreferrer">LinkedIn</a></li>
+                                <li><a href="mailto:abhinav2005thakur@gmail.com">Email</a></li>
+                                <li><a href="https://leetcode.com/u/Abhinnav91/" target="_blank" rel="noreferrer">LeetCode</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">&copy; 2026 Abhinav Thakur. Built with passion and code.</p>
+                    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+                        <i class="bi bi-arrow-up"></i>
+                    </button>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script
@@ -610,5 +691,66 @@
         crossorigin="anonymous"
     ></script>
     <script src="abhinav.js"></script>
+    <script>
+        // Scroll Progress Indicator
+        function updateScrollProgress() {
+            const scrollProgress = document.getElementById('scroll-progress');
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        }
+
+        // Back to Top Button
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (!backToTopBtn) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Active Navigation State
+        function initActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.site-nav a');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '-20% 0px -70% 0px'
+            });
+
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Initialize all enhancements
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('scroll', updateScrollProgress);
+            initBackToTop();
+            initActiveNav();
+            updateScrollProgress();
+        });
+    </script>
 </body>
 </html>
