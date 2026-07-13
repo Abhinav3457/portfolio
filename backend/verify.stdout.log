@@ -1,7 +1,0 @@
-Server running on http://localhost:4010
-Connected to MongoDB
-New feedback received: {
-  name: 'Test User',
-  email: 'test@example.com',
-  message: 'Hello from verification'
-}
