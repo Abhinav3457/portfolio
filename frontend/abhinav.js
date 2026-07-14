@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initButtonSparkles(reducedMotion);
     initTimelineAnimations(reducedMotion);
     initHeroStats(reducedMotion);
+    initCursorGlow(reducedMotion);
+    initMagneticHover(reducedMotion);
+    initSmoothScroll();
 });
 
 function initThemeToggle() {
@@ -343,6 +346,102 @@ function initHeroStats(reducedMotion) {
     );
 
     stats.forEach((stat) => observer.observe(stat));
+}
+
+/* ── Cursor Glow ── */
+function initCursorGlow(reducedMotion) {
+    const glow = document.getElementById("cursor-glow");
+    const heroSection = document.querySelector(".hero-section");
+    if (!glow || !heroSection || reducedMotion) return;
+
+    let isVisible = false;
+    let rafId = null;
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+
+    function lerp(start, end, factor) {
+        return start + (end - start) * factor;
+    }
+
+    function animate() {
+        currentX = lerp(currentX, targetX, 0.08);
+        currentY = lerp(currentY, targetY, 0.08);
+        glow.style.left = currentX + "px";
+        glow.style.top = currentY + "px";
+        if (isVisible) rafId = requestAnimationFrame(animate);
+    }
+
+    document.addEventListener("mousemove", function(e) {
+        const rect = heroSection.getBoundingClientRect();
+        if (e.clientY < rect.bottom + 100 && e.clientY > rect.top - 100) {
+            if (!isVisible) {
+                isVisible = true;
+                glow.classList.add("active");
+                animate();
+            }
+            targetX = e.clientX;
+            targetY = e.clientY;
+        } else {
+            if (isVisible) {
+                isVisible = false;
+                glow.classList.remove("active");
+                if (rafId) cancelAnimationFrame(rafId);
+            }
+        }
+    });
+
+    document.addEventListener("mouseleave", function() {
+        isVisible = false;
+        glow.classList.remove("active");
+        if (rafId) cancelAnimationFrame(rafId);
+    });
+}
+
+/* ── Magnetic Hover on Glass Cards ── */
+function initMagneticHover(reducedMotion) {
+    if (reducedMotion) return;
+
+    const cards = document.querySelectorAll(".glass-card");
+    cards.forEach(function(card) {
+        let rafId = null;
+
+        card.addEventListener("mouseenter", function() {
+            card.classList.add("magnetic-active");
+        });
+
+        card.addEventListener("mousemove", function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const moveX = ((x - centerX) / centerX) * 3;
+            const moveY = ((y - centerY) / centerY) * 3;
+
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(function() {
+                card.style.transform = "translateY(-5px) perspective(800px) rotateX(" + (-moveY) + "deg) rotateY(" + moveX + "deg) scale(1.01)";
+            });
+        });
+
+        card.addEventListener("mouseleave", function() {
+            if (rafId) cancelAnimationFrame(rafId);
+            card.classList.remove("magnetic-active");
+            card.style.transform = "translateY(0) perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
+            // Reset to default after transition completes
+            function onTransitionEnd(e) {
+                if (e.propertyName === 'transform' && !card.classList.contains('magnetic-active')) {
+                    card.style.transform = '';
+                    card.removeEventListener('transitionend', onTransitionEnd);
+                }
+            }
+            card.addEventListener('transitionend', onTransitionEnd);
+        });
+    });
+}
+
+/* ── Smooth Scroll with Enabling Class ── */
+function initSmoothScroll() {
+    document.documentElement.classList.add("smooth-scroll");
 }
 
 /* ── Timeline Animations ── */

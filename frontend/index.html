@@ -21,6 +21,23 @@
     <link rel="stylesheet" href="abhinav.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <span class="preloader-icon"><i class="bi bi-code-slash"></i></span>
+            </div>
+            <div class="preloader-name">Abhinav Thakur</div>
+            <div class="preloader-bar-track">
+                <div class="preloader-bar-fill" id="preloader-bar"></div>
+            </div>
+            <div class="preloader-status" id="preloader-status">Loading portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scroll-progress"></div>
     <div class="bg-ambient" aria-hidden="true">
@@ -694,6 +711,56 @@
     ></script>
     <script src="abhinav.js"></script>
     <script src="particles.js"></script>
+    <script>
+        // Preloader
+        (function() {
+            var preloader = document.getElementById('preloader');
+            var bar = document.getElementById('preloader-bar');
+            var status = document.getElementById('preloader-status');
+            if (!preloader) return;
+
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function dismiss() {
+                preloader.classList.add('done');
+                document.body.classList.add('page-ready');
+                setTimeout(function() { preloader.remove(); }, 600);
+            }
+
+            // Respect reduced motion: skip animation entirely
+            if (prefersReducedMotion) {
+                document.body.classList.add('page-ready');
+                preloader.remove();
+                return;
+            }
+
+            var stages = [
+                { pct: 30, text: 'Loading assets...' },
+                { pct: 60, text: 'Preparing interface...' },
+                { pct: 85, text: 'Almost ready...' },
+                { pct: 100, text: 'Welcome!' }
+            ];
+            var i = 0;
+
+            function advance() {
+                if (i < stages.length) {
+                    bar.style.width = stages[i].pct + '%';
+                    status.textContent = stages[i].text;
+                    i++;
+                    setTimeout(advance, 200 + Math.random() * 200);
+                } else {
+                    setTimeout(dismiss, 300);
+                }
+            }
+
+            setTimeout(advance, 100);
+
+            // Fallback: force dismiss after 3s
+            setTimeout(function() {
+                if (!preloader.classList.contains('done')) dismiss();
+            }, 3000);
+        })();
+    </script>
     <script>
         // Scroll Progress Indicator
         function updateScrollProgress() {
