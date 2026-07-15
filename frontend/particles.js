@@ -11,8 +11,8 @@
   var CONFIG = {
     starCount: 250, // Increased from 120 for better coverage
     mouseRadius: 200, // Increased from 160
-    mouseForce: 0.03, // Slightly increased from 0.025
-    twinkleSpeed: 0.004, // Slightly slower for more subtle effect
+    mouseForce: 0.05, // Increased for faster mouse response
+    twinkleSpeed: 0.009, // Faster twinkle for dynamic feel
     minAlpha: 0.6 // Minimum base alpha for better visibility
   };
 
@@ -48,8 +48,8 @@
     this.x = Math.random() * w;
     this.y = Math.random() * h;
     this.radius = 0.6 + Math.random() * 2.2; // Slightly larger range
-    this.vx = (Math.random() - 0.5) * 0.02;
-    this.vy = (Math.random() - 0.5) * 0.02;
+    this.vx = (Math.random() - 0.5) * 0.04;
+    this.vy = (Math.random() - 0.5) * 0.04;
     this.colorIndex = Math.floor(Math.random() * COLORS.light.length);
     this.baseAlpha = CONFIG.minAlpha + Math.random() * 0.4; // Higher minimum alpha
     this.twinkleOff = Math.random() * Math.PI * 2;
@@ -74,15 +74,15 @@
     }
 
     // Random drift
-    this.vx += (Math.random() - 0.5) * 0.006;
-    this.vy += (Math.random() - 0.5) * 0.006;
+    this.vx += (Math.random() - 0.5) * 0.01;
+    this.vy += (Math.random() - 0.5) * 0.01;
     
     // Apply friction
-    this.vx *= 0.975;
-    this.vy *= 0.975;
+    this.vx *= 0.982;
+    this.vy *= 0.982;
 
     // Limit speed
-    var maxSpd = 0.08;
+    var maxSpd = 0.15;
     var spd = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
     if (spd > maxSpd) {
       this.vx = (this.vx / spd) * maxSpd;
@@ -102,7 +102,7 @@
 
     // Calculate twinkle with extra pulse
     this.twinkle = 0.5 + 0.5 * Math.sin(t * this.twinkleSpd + this.twinkleOff);
-    this.pulse = 0.8 + 0.2 * Math.sin(t * 0.002 + this.pulsePhase); // Slow overall pulse
+    this.pulse = 0.8 + 0.2 * Math.sin(t * 0.005 + this.pulsePhase); // Faster pulse
   };
 
   Star.prototype.draw = function (ctx) {
