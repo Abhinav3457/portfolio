@@ -1623,6 +1623,10 @@ body.dark-mode .tech-cluster-card:hover {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
+    .badge-dot.pulse { animation: none !important; }
+    .status-badge, .score-badge, .system-health-bar { transition: none !important; }
+    .score-badge:hover { transform: none !important; box-shadow: none !important; }
+    .system-health-bar:hover { border-color: var(--line) !important; }
     .reveal { opacity: 1; transform: none; }
     .hero-section, .content-section, .section-heading, .hero-copy, .card-grid,
     .highlights-grid, .contact-layout { animation: none !important; opacity: 1 !important; transform: none !important; }
@@ -1662,6 +1666,21 @@ body.dark-mode .tech-cluster-card:hover {
 
     .highlights-grid { grid-template-columns: repeat(2, 1fr); }
     .tech-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .system-health-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: var(--radius-lg);
+        padding: 0.5rem 0.75rem;
+        gap: 0.35rem;
+    }
+    .health-bar-divider {
+        display: none;
+    }
+    .project-link-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 /* ── Responsive: ≤900px (Tablet) ── */

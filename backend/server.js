@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
+const SERVER_START_TIME = Date.now();
 const PORT = process.env.PORT || 3000;
 const frontendPath = path.join(__dirname, '../frontend');
 
@@ -17,7 +18,74 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
+  const now = Date.now();
+  const uptimeMs = now - SERVER_START_TIME;
+
+  // Format uptime as human-readable string
+  let uptimeStr;
+  const totalSeconds = Math.floor(uptimeMs / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  if (days > 0) {
+    uptimeStr = days + 'd ' + hours + 'h ' + minutes + 'm';
+  } else if (hours > 0) {
+    uptimeStr = hours + 'h ' + minutes + 'm';
+  } else if (minutes > 0) {
+    uptimeStr = minutes + 'm ' + (totalSeconds % 60) + 's';
+  } else {
+    uptimeStr = totalSeconds + 's';
+  }
+
+  res.status(200).json({
+    status: 'ok',
+    timestamp: now,
+    uptime: uptimeMs,
+    uptimeHuman: uptimeStr,
+    startTime: SERVER_START_TIME
+  });
+});
+
+// Proxy endpoint to check external site availability
+app.get('/api/check-site', async (req, res) => {
+  const { url } = req.query;
+  if (!url) {
+    return res.status(400).json({ error: 'Missing url query parameter' });
+  }
+
+  const start = Date.now();
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
+    const response = await fetch(url, {
+      method: 'HEAD',
+      signal: controller.signal,
+      headers: { 'User-Agent': 'Portfolio-Health-Checker/1.0' }
+    });
+
+    clearTimeout(timeout);
+
+    const elapsed = Date.now() - start;
+
+    return res.status(200).json({
+      url,
+      status: response.ok ? 'online' : 'error',
+      statusCode: response.status,
+      responseTime: elapsed
+    });
+  } catch (error) {
+    const elapsed = Date.now() - start;
+    return res.status(200).json({
+      url,
+      status: 'offline',
+      statusCode: null,
+      responseTime: elapsed,
+      error: error.name === 'AbortError' ? 'timeout' : 'unreachable'
+    });
+  }
 });
 
 app.get('/api/leetcode', async (req, res) => {
@@ -66,8 +134,6 @@ app.get('/api/leetcode', async (req, res) => {
     return res.status(502).json({ error: 'Failed to fetch LeetCode stats' });
   }
 });
-
-
 
 // Start server
 app.listen(PORT, () => {

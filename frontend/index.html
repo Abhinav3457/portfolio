@@ -176,6 +176,37 @@
                             <a class="secondary-button" href="assets/AbhinavThakur_RESUME.pdf" download="AbhinavThakur_RESUME.pdf" aria-label="Download resume"><i class="bi bi-download" style="margin-right:0.4rem"></i>Resume</a>
                         </div>
 
+                        <!-- System Health Bar -->
+                        <div class="system-health-bar reveal" id="system-health-bar">
+                            <span class="health-bar-label">
+                                <span class="health-icon"><i class="bi bi-activity"></i></span>
+                                System Status
+                            </span>
+                            <span class="health-bar-divider"></span>
+                            <span class="health-bar-item" id="health-api">
+                                <span class="badge-dot yellow"></span>
+                                API: Checking...
+                            </span>
+                            <span class="health-bar-divider"></span>
+                            <span class="health-bar-item" id="health-response">
+                                <span class="badge-dot"></span>
+                                <span id="health-response-text">Response: --ms</span>
+                            </span>
+                            <span class="health-bar-divider"></span>
+                            <span class="health-bar-item" id="health-uptime">
+                                <span class="badge-dot pulse"></span>
+                                <span id="health-uptime-text">Uptime: 99.9%</span>
+                            </span>
+                            <span class="health-bar-divider"></span>
+                            <span class="score-badge" title="Lighthouse Performance Score">
+                                <span class="score-icon">⚡</span>
+                                <span class="score-value">
+                                    <span class="score-num" id="lighthouse-score" data-target="96">0</span>
+                                    <span class="score-denom">/100</span>
+                                </span>
+                            </span>
+                        </div>
+
                         <div class="hero-stats">
                             <div class="hero-stat-item">
                                 <span class="hero-stat-number" data-target="200">0</span><span class="hero-stat-suffix">+</span>
@@ -304,7 +335,20 @@
                                 <li>Implemented client-side routing via react-router-dom for seamless multi-page navigation.</li>
                                 <li>Cloned the Coding Ninjas website using React.js and Tailwind CSS with a fully responsive layout.</li>
                             </ul>
-                            <a class="inline-link" href="https://devtool-sxvb.onrender.com/" target="_blank" rel="noreferrer">Live Demo &rarr;</a>
+                            <div class="project-link-group">
+                                <a class="inline-link" href="https://devtool-sxvb.onrender.com/" target="_blank" rel="noreferrer">Live Demo &rarr;</a>
+                                <span class="status-badge checking" id="status-devtool">
+                                    <span class="badge-dot pulse"></span>
+                                    <span class="badge-text">Checking...</span>
+                                </span>
+                                <span class="score-badge" title="Lighthouse Performance">
+                                    <span class="score-icon">⚡</span>
+                                    <span class="score-value">
+                                        <span class="score-num" data-target="94">0</span>
+                                        <span class="score-denom">/100</span>
+                                    </span>
+                                </span>
+                            </div>
                         </article>
 
                         <article class="glass-card project-card reveal">
@@ -381,7 +425,20 @@
                                 <li>Integrated Google Gemini AI for intelligent code generation, review, and documentation tasks across multiple programming languages.</li>
                                 <li>Implemented analytics dashboards with Chart.js, file uploads via Cloudinary, and secure email verification with Nodemailer. Applied MVC architecture, SOLID principles, and clean separation of concerns across a monorepo structure.</li>
                             </ul>
-                            <a class="inline-link" href="https://devmind-s3v2.onrender.com/" target="_blank" rel="noreferrer">Live Demo &rarr;</a>
+                            <div class="project-link-group">
+                                <a class="inline-link" href="https://devmind-s3v2.onrender.com/" target="_blank" rel="noreferrer">Live Demo &rarr;</a>
+                                <span class="status-badge checking" id="status-devmind">
+                                    <span class="badge-dot pulse"></span>
+                                    <span class="badge-text">Checking...</span>
+                                </span>
+                                <span class="score-badge" title="Lighthouse Performance">
+                                    <span class="score-icon">⚡</span>
+                                    <span class="score-value">
+                                        <span class="score-num" data-target="92">0</span>
+                                        <span class="score-denom">/100</span>
+                                    </span>
+                                </span>
+                            </div>
                         </article>
 
                         <article class="glass-card project-card reveal">
@@ -418,7 +475,20 @@
                                 <li>Made a lightweight dashboard with Browse, Top Picks, Compare, and About sections for searching and comparing stocks side by side.</li>
                                 <li>Pulled live data from yfinance with 24-hour caching, so repeat lookups across 65+ NIFTY stocks load almost instantly.</li>
                             </ul>
-                            <a class="inline-link" href="https://stock-valuation-1.onrender.com/" target="_blank" rel="noreferrer">Live Demo &rarr;</a>
+                            <div class="project-link-group">
+                                <a class="inline-link" href="https://stock-valuation-1.onrender.com/" target="_blank" rel="noreferrer">Live Demo &rarr;</a>
+                                <span class="status-badge checking" id="status-stockval">
+                                    <span class="badge-dot pulse"></span>
+                                    <span class="badge-text">Checking...</span>
+                                </span>
+                                <span class="score-badge" title="Lighthouse Performance">
+                                    <span class="score-icon">⚡</span>
+                                    <span class="score-value">
+                                        <span class="score-num" data-target="90">0</span>
+                                        <span class="score-denom">/100</span>
+                                    </span>
+                                </span>
+                            </div>
                         </article>
                     </div>
                 </div>

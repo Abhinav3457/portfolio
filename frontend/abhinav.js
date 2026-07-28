@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initCursorGlow(reducedMotion);
     initMagneticHover(reducedMotion);
     initSmoothScroll();
+    initSystemHealth();
+    initScoreAnimations(reducedMotion);
 });
 
 function initThemeToggle() {
@@ -442,6 +444,171 @@ function initMagneticHover(reducedMotion) {
 /* ── Smooth Scroll with Enabling Class ── */
 function initSmoothScroll() {
     document.documentElement.classList.add("smooth-scroll");
+}
+
+/* ── System Health Bar ── */
+function initSystemHealth() {
+    const apiItem = document.getElementById("health-api");
+    const responseItem = document.getElementById("health-response");
+    const responseText = document.getElementById("health-response-text");
+
+    if (!apiItem) return;
+
+    checkApiHealth(apiItem, responseItem, responseText);
+
+    // Poll every 60 seconds
+    setInterval(() => {
+        checkApiHealth(apiItem, responseItem, responseText);
+    }, 60000);
+
+    // Check external demo sites
+    checkExternalStatus("status-devtool", "https://devtool-sxvb.onrender.com/");
+    checkExternalStatus("status-devmind", "https://devmind-s3v2.onrender.com/");
+    checkExternalStatus("status-stockval", "https://stock-valuation-1.onrender.com/");
+
+    // Re-check external demos every 5 minutes
+    setInterval(() => {
+        checkExternalStatus("status-devtool", "https://devtool-sxvb.onrender.com/");
+        checkExternalStatus("status-devmind", "https://devmind-s3v2.onrender.com/");
+        checkExternalStatus("status-stockval", "https://stock-valuation-1.onrender.com/");
+    }, 300000);
+}
+
+function checkApiHealth(apiItem, responseItem, responseText) {
+    const dot = apiItem.querySelector(".badge-dot");
+    const responseDot = responseItem ? responseItem.querySelector(".badge-dot") : null;
+
+    apiItem.className = "health-bar-item checking";
+    dot.className = "badge-dot yellow";
+    apiItem.innerHTML = '<span class="badge-dot yellow pulse"></span> API: Checking...';
+
+    const startTime = performance.now();
+
+    fetch("/api/health", { method: "GET", cache: "no-cache" })
+        .then((res) => {
+            return res.json().then(function(data) {
+                const elapsed = Math.round(performance.now() - startTime);
+
+                if (res.ok) {
+                    apiItem.className = "health-bar-item online";
+                    apiItem.innerHTML = '<span class="badge-dot green"></span> API: Online';
+
+                    // Update response time
+                    if (responseText) {
+                        var colorClass = elapsed < 200 ? "green" : elapsed < 500 ? "yellow" : "red";
+                        responseText.textContent = "Response: " + elapsed + "ms";
+                        if (responseDot) responseDot.className = "badge-dot " + colorClass;
+                    }
+
+                    // Update real uptime from the server
+                    var uptimeItem = document.getElementById("health-uptime");
+                    var uptimeText = document.getElementById("health-uptime-text");
+                    if (uptimeText && data.uptimeHuman) {
+                        uptimeText.textContent = "Uptime: " + data.uptimeHuman;
+                        if (uptimeItem) {
+                            uptimeItem.className = "health-bar-item online";
+                            var uptimeDot = uptimeItem.querySelector(".badge-dot");
+                            if (uptimeDot) uptimeDot.className = "badge-dot green pulse";
+                        }
+                    }
+                } else {
+                    apiItem.className = "health-bar-item offline";
+                    apiItem.innerHTML = '<span class="badge-dot red"></span> API: Error';
+                }
+            });
+        })
+        .catch(() => {
+            apiItem.className = "health-bar-item offline";
+            apiItem.innerHTML = '<span class="badge-dot red"></span> API: Offline';
+        });
+}
+
+function checkExternalStatus(elementId, url) {
+    const badge = document.getElementById(elementId);
+    if (!badge) return;
+
+    const dot = badge.querySelector(".badge-dot");
+    const text = badge.querySelector(".badge-text");
+
+    badge.className = "status-badge checking";
+    if (dot) {
+        dot.className = "badge-dot pulse";
+    }
+    if (text) text.textContent = "Checking...";
+
+    // Use the backend proxy to truly check site availability
+    fetch("/api/check-site?url=" + encodeURIComponent(url))
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.status === "online") {
+                badge.className = "status-badge online";
+                if (dot) dot.className = "badge-dot";
+                if (text) {
+                    var label = data.responseTime < 1000
+                        ? "Online (" + data.responseTime + "ms)"
+                        : "Online (" + (data.responseTime / 1000).toFixed(1) + "s)";
+                    text.textContent = label;
+                }
+            } else {
+                badge.className = "status-badge offline";
+                if (dot) dot.className = "badge-dot";
+                if (text) text.textContent = "Unreachable";
+            }
+        })
+        .catch(function() {
+            badge.className = "status-badge offline";
+            if (dot) dot.className = "badge-dot";
+            if (text) text.textContent = "Unknown";
+        });
+}
+
+/* ── Animated Score Badges ── */
+function initScoreAnimations(reducedMotion) {
+    const scores = document.querySelectorAll(".score-num[data-target]");
+    if (!scores.length) return;
+
+    const duration = reducedMotion ? 0 : 1200;
+
+    const animateScore = (el) => {
+        const target = parseInt(el.dataset.target, 10);
+        const startTime = performance.now();
+
+        if (duration === 0) {
+            el.textContent = target;
+            return;
+        }
+
+        const step = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+
+            el.textContent = current;
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = target;
+            }
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateScore(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.4 }
+    );
+
+    scores.forEach((score) => observer.observe(score));
 }
 
 /* ── Timeline Animations ── */
