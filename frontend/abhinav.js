@@ -461,17 +461,7 @@ function initSystemHealth() {
         checkApiHealth(apiItem, responseItem, responseText);
     }, 60000);
 
-    // Check external demo sites
-    checkExternalStatus("status-devtool", "https://devtool-sxvb.onrender.com/");
-    checkExternalStatus("status-devmind", "https://devmind-s3v2.onrender.com/");
-    checkExternalStatus("status-stockval", "https://stock-valuation-1.onrender.com/");
 
-    // Re-check external demos every 5 minutes
-    setInterval(() => {
-        checkExternalStatus("status-devtool", "https://devtool-sxvb.onrender.com/");
-        checkExternalStatus("status-devmind", "https://devmind-s3v2.onrender.com/");
-        checkExternalStatus("status-stockval", "https://stock-valuation-1.onrender.com/");
-    }, 300000);
 }
 
 function checkApiHealth(apiItem, responseItem, responseText) {
