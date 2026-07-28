@@ -2761,3 +2761,288 @@ body.dark-mode .footer-social-link:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* ── Project Preview Gallery ── */
+.project-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.05));
+    border: 1px solid var(--line);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-preview:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 24px rgba(99, 102, 241, 0.15), 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .project-preview:hover {
+    box-shadow: 0 0 24px rgba(129, 140, 248, 0.2), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.preview-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.preview-fallback i {
+    font-size: 2rem;
+    color: var(--accent);
+    opacity: 0.6;
+}
+
+.preview-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+}
+
+.preview-img.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.project-preview:hover .preview-img.active {
+    transform: scale(1.05);
+}
+
+.preview-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 3;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.project-preview:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-overlay i {
+    font-size: 1.6rem;
+}
+
+.preview-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 4;
+}
+
+.preview-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.preview-dots .dot.active {
+    background: var(--accent);
+    transform: scale(1.3);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+body.dark-mode .preview-dots .dot {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .preview-dots .dot.active {
+    background: var(--accent-bright);
+    box-shadow: 0 0 8px rgba(129, 140, 248, 0.5);
+}
+
+/* ── Image Error Fallback ── */
+.preview-img.error {
+    display: none;
+}
+
+.project-preview.has-error .preview-fallback {
+    opacity: 1;
+}
+
+.project-preview:not(.has-error) .preview-fallback {
+    opacity: 0;
+}
+
+/* ── Full-Screen Preview Modal ── */
+.preview-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.preview-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.modal-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-prev { left: 1.2rem; }
+.modal-next { right: 1.2rem; }
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    transition: opacity 0.4s ease;
+}
+
+.modal-dots {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.modal-dots .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.modal-dots .dot.active {
+    background: #fff;
+    transform: scale(1.3);
+}
+
+.modal-counter {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    z-index: 10;
+}
+
+body.modal-open { overflow: hidden; }
+
+/* ── Responsive: Project Preview ── */
+@media (max-width: 720px) {
+    .project-preview {
+        aspect-ratio: 16 / 10;
+        margin-bottom: 0.8rem;
+        border-radius: var(--radius-md);
+    }
+    .preview-overlay span { display: none; }
+    .preview-overlay i { font-size: 1.3rem; }
+    .modal-nav { width: 38px; height: 38px; font-size: 1rem; }
+    .modal-prev { left: 0.6rem; }
+    .modal-next { right: 0.6rem; }
+    .modal-close { top: 0.6rem; right: 0.6rem; width: 38px; height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preview-img { transition: none; }
+    .project-preview:hover .preview-img.active { transform: none; }
+    .preview-overlay { transition: none; }
+    .preview-modal { transition: none; }
+    .modal-img { transition: none; }
+}
