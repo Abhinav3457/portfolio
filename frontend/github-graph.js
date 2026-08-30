@@ -65,7 +65,7 @@
 
   /* ── SVG rendering ──────────────────────────────────────────── */
 
-  function buildSVG(points, total) {
+  function buildSVG(points, total, daysCount) {
     var c = colors();
     var W = 900;
     var H = 280;
@@ -162,7 +162,7 @@
       "</linearGradient>" +
       "</defs>" +
       /* total badge */
-      '<text x="' + (W - PAD.right) + '" y="' + (PAD.top - 10) + '" text-anchor="end" fill="' + c.text + '" font-size="13" font-family="Outfit,sans-serif" font-weight="500">' + total + " contributions in " + DAYS_TO_SHOW + " days</text>" +
+      '<text x="' + (W - PAD.right) + '" y="' + (PAD.top - 10) + '" text-anchor="end" fill="' + c.text + '" font-size="13" font-family="Outfit,sans-serif" font-weight="500">' + total + " contributions in " + daysCount + " days</text>" +
       /* grid */
       gridLines +
       /* area fill */
@@ -205,8 +205,13 @@
     if (!wrapper) return;
 
     var contribs = chartData.contributions || [];
-    /* take last N days */
-    var sliced = contribs.slice(-DAYS_TO_SHOW);
+    /* filter out future dates, then take last N days */
+    var today = new Date();
+    today.setHours(23, 59, 59, 999);
+    var past = contribs.filter(function (d) {
+      return new Date(d.date + "T00:00:00") <= today;
+    });
+    var sliced = past.slice(-DAYS_TO_SHOW);
 
     var points = sliced.map(function (d) {
       return {
@@ -217,7 +222,7 @@
 
     var total = points.reduce(function (sum, p) { return sum + p.count; }, 0);
 
-    wrapper.innerHTML = buildSVG(points, total);
+    wrapper.innerHTML = buildSVG(points, total, points.length);
   }
 
   /* ── theme switching ────────────────────────────────────────── */
