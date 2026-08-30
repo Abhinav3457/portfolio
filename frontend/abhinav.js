@@ -47,6 +47,11 @@ function applyTheme(useDarkMode) {
         lcImg.src = lcImg.src.replace(/theme=[^&]+/, `theme=${newTheme}`);
     }
 
+    /* Update GitHub graph theme */
+    if (window.GitHubGraph) {
+        window.GitHubGraph.setTheme(useDarkMode);
+    }
+
     /* Update particle system colors to match theme */
     if (window.ParticleSystem) {
         window.ParticleSystem.setTheme(useDarkMode);

@@ -1053,10 +1053,8 @@ body.dark-mode .tech-cluster-card:hover {
     overflow: clip;
 }
 
-.github-graph-img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
+body.dark-mode .github-graph-wrapper {
+    background: rgba(15, 15, 20, 0.5);
 }
 
 /* ── LeetCode Stats ── */
